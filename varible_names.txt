@@ -1,0 +1,10 @@
+Varible names
+
+List of tokens after parsing
+    token_list
+
+List of categorized tokens
+    categorized_list
+
+Token dictionary
+    token_dict
