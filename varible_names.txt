@@ -1,9 +1,9 @@
 Varible names
 
-List of tokens after parsing
+List of tokens for token types
     token_list
 
-List of categorized tokens
+List of tokens to be categorized
     categorized_list
 
 Token dictionary
