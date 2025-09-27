@@ -60,19 +60,31 @@ token_list = {
         '=': 408,
         '(':409,
         ')':410,
-        '.':411 #TODO Need to add some way to signify operator vs special symbol
+        '.':411,
+        '**':412,
+        '^=*':413,
+        '>=**':414,
+        '=>':414,
+        '<=**':415,
+        '=<':415,
+        '<>':416,
+        '><':417,
+        '||': 418,
+        '&':419,
+        '|':420,
+        '^*':421,
+        '-*':422
     },
 
     "special symbols":{
         ',': 801,
         '.': 802,
-        '"': 803,
-        "'": 804,
+        ':': 803
     }
 }
 
 class Token:
-    def __init__(self,type,id,value):
+    def __init__(self, type, id, value):
         self.type = type
         self.id = id
         self.value = value
