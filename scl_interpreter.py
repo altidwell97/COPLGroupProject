@@ -37,22 +37,58 @@ def tokenizefile(filename):
                 continue
 
             document.append(currentLine)  # Adds list to nested list
-
-        # print tokenized lines
-        for line in document:
-            print(line)
-
         return document
 
 # tokenizefile('SCL/welcome.scl')
 
 
 commandLine = sys.argv  # what is inputted into the CLI
+in_quotes = False
+identifier_id = 3000
+identifier_list = {}
+def token_catorizer(token):
+    global in_quotes
+    global identifier_id
+    if in_quotes == True:
+        if str(token).endswith("\"") or str(token).startswith("\""):
+            set_boolean(False)
+            return Token("StringLiteral", 5000, token)
+        else:
+            return Token("StringLiteral", 5000, token)
+    else:
+        if str(token).startswith("\"") and str(token).endswith("\""):
+            return Token("StringLiteral", 5000, token)
+        elif str(token).startswith("\""):
+            set_boolean(True)
+            return Token("StringLiteral", 5000, token)
+        elif token in token_list["keywords"]:
+            return Token("Keyword", token_list["keywords"][token], token)
+        elif token in token_list["operators"]:
+            return Token("Operator", token_list["operators"][token], token)
+        elif token in token_list["special symbols"]:
+            return Token("SpeacialSymbol", token_list["special symbols"][token], token)
+        elif re.match(r"[a-zA-Z_]", str(token)):
+            if token in identifier_list:
+                return Token("Identifier", identifier_list[token], token)
+            identifier_id += 1
+            identifier = Token("Identifier", identifier_id, token)
+            identifier_list[token] = identifier_id
+            return identifier
+        elif re.match(r"[0-9]", str(token)):
+            return Token("NumericaLiteral", 4000, token)
+        return Token("Unkown", 1200, token)
 
-# Command Line should take the form: python scl_Scanner.py SCL/[SCL File]
-# Ex: python Test/scl_scanner.py SCL/welcome.scl
-# May need to move to the correct directory with the cd command on the CLI
+def set_boolean(new_value):
+    global in_quotes
+    in_quotes = new_value
 
+#tokenizefile('SCL/welcome.scl')
+
+commandLine = sys.argv #What is inputted into the CLI
+
+#Command Line should take the form: python scl_Scanner.py SCL/[SCL File]
+#Ex: python Test/scl_scanner.py SCL/welcome.scl
+#May need to move to the correct directory with the cd command on the CLI
 if __name__ == "__main__":
     if len(commandLine) < 2:
         print("Usage: python scl_scanner.py SCL/<file.scl> [output.json]")
@@ -69,19 +105,43 @@ if __name__ == "__main__":
     # runs og tokenizer
     document = tokenizefile(src_path)
 
-    # Build a flat list for token streaming
-    flat_tokens = [tok for line in document for tok in line]
+    categorized_list = []
 
-    # Print summary
-    print(f"\nTotal lines tokenized: {len(document)}")
-    print(f"Total tokens (flat): {len(flat_tokens)}")
+    final_dictionary = {}
+
+    for token in document:
+        for item in token:
+            # current_token = token_catorizer(item)
+            # print(current_token)
+            new_token = token_catorizer(item)
+            categorized_list.append(new_token)
+            print("Token created: ", new_token.get_data())
+        new_token = Token('EndOfStatement', 1000, 'EOS')
+        print("Token created: ", new_token.get_data())
+        categorized_list.append(new_token)
+
+    iterator = 0
+    for Token in categorized_list:
+        token_str = "Token_" + str(iterator)
+
+        token_data = Token.get_data()
+        token_dictionary = {
+            "type": token_data[0],
+            "id": token_data[1],
+            "value": token_data[2]
+        }
+
+        final_dictionary[token_str] = token_dictionary
+        iterator += 1
+
 
     #  write json showing both shapes
     payload = {
         "source": src_path,
         "tokens_by_line": document,
-        "tokens_flat": flat_tokens
+        "tokens_flat": final_dictionary
     }
+    
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
 
