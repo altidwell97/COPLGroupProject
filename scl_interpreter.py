@@ -91,10 +91,10 @@ commandLine = sys.argv #What is inputted into the CLI
 #May need to move to the correct directory with the cd command on the CLI
 if __name__ == "__main__":
     if len(commandLine) < 2:
-        print("Usage: python scl_scanner.py SCL/<file.scl> [output.json]")
+        print("Usage: python scl_scanner.py <file.scl> [output.json]")
         sys.exit(1)
 
-    src_path = commandLine[1]
+    src_path = "SCL/" + commandLine[1]
     out_path = commandLine[2] if len(
         commandLine) >= 3 else "tokens_output.json"
 
