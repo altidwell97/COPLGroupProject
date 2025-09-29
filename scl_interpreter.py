@@ -4,8 +4,7 @@ import sys
 import json
 import re
 
-# Need to figure out how to get it to get the file from the command line (sys.argv argv[1] for filename)
-# and have it search the SCL folder for it rather than just the COPLGroupProject folder
+# Group: Alex Tidwell, Jennifer Morales, Sydney Forbes
 
 
 def tokenizefile(filename):
