@@ -77,7 +77,7 @@ def token_catorizer(token):
     elif re.match(r"[0-9]", str(token)):
         return Token("NumericaLiteral", 4000, token)
     # If token does not fall into any of the above categories
-    return Token("Unkown", 1200, token)
+    return Token("Unknown", 1200, token)
 
 #tokenizefile('SCL/welcome.scl')
 

@@ -1,19 +1,44 @@
 {
-  "source": "SCL/welcome.scl",
+  "source": "SCL/linkedg.scl",
   "tokens_by_line": [
     [
       "import",
       "\"scl.h\""
     ],
     [
-      "implementations"
+      "specifications"
     ],
     [
-      "function",
-      "main",
-      "return",
+      "struct",
+      "node",
+      "is"
+    ],
+    [
+      "structures"
+    ],
+    [
+      "define",
+      "datablock",
+      "pointer",
+      "of",
       "type",
-      "integer",
+      "void"
+    ],
+    [
+      "define",
+      "link",
+      "pointer",
+      "of",
+      "type",
+      "NodeType"
+    ],
+    [
+      "endstruct",
+      "node"
+    ],
+    [
+      "struct",
+      "llist",
       "is"
     ],
     [
@@ -21,36 +46,290 @@
     ],
     [
       "define",
-      "x",
+      "numnodes",
       "of",
       "type",
-      "double"
+      "integer"
     ],
     [
-      "begin"
+      "define",
+      "maxnodes",
+      "of",
+      "type",
+      "integer"
     ],
     [
-      "display",
-      "\"Welcome to the world of SCL\""
+      "define",
+      "sname",
+      "array",
+      "[30]",
+      "of",
+      "type",
+      "char"
     ],
     [
-      "set",
-      "x",
-      "=",
-      "45.95"
+      "structures"
     ],
     [
-      "display",
-      "\"Value of x: \"",
-      ",",
-      "x"
+      "define",
+      "Head",
+      "of",
+      "type",
+      "NodePtrT"
     ],
     [
-      "exit"
+      "define",
+      "current",
+      "of",
+      "type",
+      "NodePtrT"
     ],
     [
-      "endfun",
-      "main"
+      "endstruct",
+      "llist"
+    ],
+    [
+      "definetype",
+      "struct",
+      "node",
+      "NodeType"
+    ],
+    [
+      "definetype",
+      "pointer",
+      "NodeType",
+      "NodePtrT"
+    ],
+    [
+      "definetype",
+      "struct",
+      "llist",
+      "listT"
+    ],
+    [
+      "forward",
+      "declarations"
+    ],
+    [
+      "function",
+      "create_list",
+      "return",
+      "type",
+      "void",
+      "parameters",
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT,"
+    ],
+    [
+      "maxn",
+      "of",
+      "type",
+      "integer",
+      ","
+    ],
+    [
+      "pname",
+      "pointer",
+      "of",
+      "type",
+      "char"
+    ],
+    [
+      "function",
+      "insert_front",
+      "return",
+      "type",
+      "void",
+      "parameters",
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT,"
+    ],
+    [
+      "pnode",
+      "of",
+      "type",
+      "NodeptrT"
+    ],
+    [
+      "function",
+      "remove_front",
+      "return",
+      "type",
+      "NodePtr"
+    ],
+    [
+      "parameters",
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT"
+    ],
+    [
+      "function",
+      "traverse_display",
+      "return",
+      "type",
+      "void",
+      "parameters",
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT"
+    ],
+    [
+      "function",
+      "empty_list",
+      "return",
+      "type",
+      "bool",
+      "parameters",
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT"
+    ],
+    [
+      "function",
+      "full_list",
+      "return",
+      "type",
+      "bool",
+      "parameters",
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT"
+    ],
+    [
+      "function",
+      "remove_node",
+      "return",
+      "type",
+      "NodePtr",
+      "parameters",
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT,"
+    ],
+    [
+      "lpos",
+      "of",
+      "type",
+      "integer"
+    ],
+    [
+      "function",
+      "get_front",
+      "return",
+      "type",
+      "NodePtr",
+      "parameters"
+    ],
+    [
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT"
+    ],
+    [
+      "function",
+      "get_next",
+      "return",
+      "type",
+      "NodePtr",
+      "parameters"
+    ],
+    [
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT"
+    ],
+    [
+      "function",
+      "remove_last",
+      "return",
+      "type",
+      "NodePtr",
+      "parameters"
+    ],
+    [
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT"
+    ],
+    [
+      "function",
+      "csize",
+      "return",
+      "type",
+      "integer",
+      "parameters"
+    ],
+    [
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT"
+    ],
+    [
+      "function",
+      "insert_node",
+      "return",
+      "type",
+      "void",
+      "parameters",
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT,"
+    ],
+    [
+      "pnode",
+      "of",
+      "type",
+      "NodePtr,",
+      "lposition",
+      "of",
+      "type",
+      "integer"
+    ],
+    [
+      "function",
+      "get_node",
+      "return",
+      "type",
+      "NodePtr",
+      "parameters",
+      "plist",
+      "pointer",
+      "of",
+      "type",
+      "listT,"
+    ],
+    [
+      "lpos",
+      "of",
+      "type",
+      "integer"
     ]
   ],
   "tokens_flat": {
@@ -70,9 +349,9 @@
       "value": "EOS"
     },
     "Token_3": {
-      "type": "Keyword",
-      "id": 22,
-      "value": "implementations"
+      "type": "Identifier",
+      "id": 3001,
+      "value": "specifications"
     },
     "Token_4": {
       "type": "EndOfStatement",
@@ -80,99 +359,99 @@
       "value": "EOS"
     },
     "Token_5": {
-      "type": "Keyword",
-      "id": 20,
-      "value": "function"
+      "type": "Identifier",
+      "id": 3002,
+      "value": "struct"
     },
     "Token_6": {
-      "type": "Keyword",
-      "id": 29,
-      "value": "main"
+      "type": "Identifier",
+      "id": 3003,
+      "value": "node"
     },
     "Token_7": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
-    },
-    "Token_8": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
-    "Token_9": {
-      "type": "Keyword",
-      "id": 25,
-      "value": "integer"
-    },
-    "Token_10": {
       "type": "Keyword",
       "id": 26,
       "value": "is"
     },
-    "Token_11": {
+    "Token_8": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_12": {
+    "Token_9": {
       "type": "Keyword",
-      "id": 44,
-      "value": "variables"
+      "id": 39,
+      "value": "structures"
     },
-    "Token_13": {
+    "Token_10": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_14": {
+    "Token_11": {
       "type": "Keyword",
       "id": 8,
       "value": "define"
     },
-    "Token_15": {
+    "Token_12": {
       "type": "Identifier",
-      "id": 3001,
-      "value": "x"
+      "id": 3004,
+      "value": "datablock"
     },
-    "Token_16": {
+    "Token_13": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_14": {
       "type": "Keyword",
       "id": 32,
       "value": "of"
     },
-    "Token_17": {
+    "Token_15": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_18": {
-      "type": "Keyword",
-      "id": 11,
-      "value": "double"
+    "Token_16": {
+      "type": "Identifier",
+      "id": 3005,
+      "value": "void"
     },
-    "Token_19": {
+    "Token_17": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
+    },
+    "Token_18": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_19": {
+      "type": "Identifier",
+      "id": 3006,
+      "value": "link"
     },
     "Token_20": {
       "type": "Keyword",
-      "id": 2,
-      "value": "begin"
+      "id": 34,
+      "value": "pointer"
     },
     "Token_21": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
     },
     "Token_22": {
       "type": "Keyword",
-      "id": 9,
-      "value": "display"
+      "id": 42,
+      "value": "type"
     },
     "Token_23": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "\"Welcome to the world of SCL\""
+      "type": "Identifier",
+      "id": 3007,
+      "value": "NodeType"
     },
     "Token_24": {
       "type": "EndOfStatement",
@@ -180,76 +459,1306 @@
       "value": "EOS"
     },
     "Token_25": {
-      "type": "Keyword",
-      "id": 37,
-      "value": "set"
+      "type": "Identifier",
+      "id": 3008,
+      "value": "endstruct"
     },
     "Token_26": {
       "type": "Identifier",
-      "id": 3001,
-      "value": "x"
+      "id": 3003,
+      "value": "node"
     },
     "Token_27": {
-      "type": "Operator",
-      "id": 408,
-      "value": "="
-    },
-    "Token_28": {
-      "type": "NumericaLiteral",
-      "id": 4000,
-      "value": "45.95"
-    },
-    "Token_29": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
+    "Token_28": {
+      "type": "Identifier",
+      "id": 3002,
+      "value": "struct"
+    },
+    "Token_29": {
+      "type": "Identifier",
+      "id": 3009,
+      "value": "llist"
+    },
     "Token_30": {
       "type": "Keyword",
-      "id": 9,
-      "value": "display"
+      "id": 26,
+      "value": "is"
     },
     "Token_31": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "\"Value of x: \""
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_32": {
+      "type": "Keyword",
+      "id": 44,
+      "value": "variables"
+    },
+    "Token_33": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_34": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_35": {
+      "type": "Identifier",
+      "id": 3010,
+      "value": "numnodes"
+    },
+    "Token_36": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_37": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_38": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_39": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_40": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_41": {
+      "type": "Identifier",
+      "id": 3011,
+      "value": "maxnodes"
+    },
+    "Token_42": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_43": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_44": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_45": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_46": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_47": {
+      "type": "Identifier",
+      "id": 3012,
+      "value": "sname"
+    },
+    "Token_48": {
+      "type": "Keyword",
+      "id": 1,
+      "value": "array"
+    },
+    "Token_49": {
+      "type": "Unknown",
+      "id": 1200,
+      "value": "[30]"
+    },
+    "Token_50": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_51": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_52": {
+      "type": "Keyword",
+      "id": 4,
+      "value": "char"
+    },
+    "Token_53": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_54": {
+      "type": "Keyword",
+      "id": 39,
+      "value": "structures"
+    },
+    "Token_55": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_56": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_57": {
+      "type": "Identifier",
+      "id": 3013,
+      "value": "Head"
+    },
+    "Token_58": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_59": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_60": {
+      "type": "Identifier",
+      "id": 3014,
+      "value": "NodePtrT"
+    },
+    "Token_61": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_62": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_63": {
+      "type": "Identifier",
+      "id": 3015,
+      "value": "current"
+    },
+    "Token_64": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_65": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_66": {
+      "type": "Identifier",
+      "id": 3014,
+      "value": "NodePtrT"
+    },
+    "Token_67": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_68": {
+      "type": "Identifier",
+      "id": 3008,
+      "value": "endstruct"
+    },
+    "Token_69": {
+      "type": "Identifier",
+      "id": 3009,
+      "value": "llist"
+    },
+    "Token_70": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_71": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "definetype"
+    },
+    "Token_72": {
+      "type": "Identifier",
+      "id": 3002,
+      "value": "struct"
+    },
+    "Token_73": {
+      "type": "Identifier",
+      "id": 3003,
+      "value": "node"
+    },
+    "Token_74": {
+      "type": "Identifier",
+      "id": 3007,
+      "value": "NodeType"
+    },
+    "Token_75": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_76": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "definetype"
+    },
+    "Token_77": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_78": {
+      "type": "Identifier",
+      "id": 3007,
+      "value": "NodeType"
+    },
+    "Token_79": {
+      "type": "Identifier",
+      "id": 3014,
+      "value": "NodePtrT"
+    },
+    "Token_80": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_81": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "definetype"
+    },
+    "Token_82": {
+      "type": "Identifier",
+      "id": 3002,
+      "value": "struct"
+    },
+    "Token_83": {
+      "type": "Identifier",
+      "id": 3009,
+      "value": "llist"
+    },
+    "Token_84": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "listT"
+    },
+    "Token_85": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_86": {
+      "type": "Keyword",
+      "id": 19,
+      "value": "forward"
+    },
+    "Token_87": {
+      "type": "Keyword",
+      "id": 7,
+      "value": "declarations"
+    },
+    "Token_88": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_89": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_90": {
+      "type": "Identifier",
+      "id": 3018,
+      "value": "create_list"
+    },
+    "Token_91": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_92": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_93": {
+      "type": "Identifier",
+      "id": 3005,
+      "value": "void"
+    },
+    "Token_94": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_95": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_96": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_97": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_98": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_99": {
+      "type": "Identifier",
+      "id": 3020,
+      "value": "listT,"
+    },
+    "Token_100": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_101": {
+      "type": "Identifier",
+      "id": 3021,
+      "value": "maxn"
+    },
+    "Token_102": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_103": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_104": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_105": {
       "type": "SpeacialSymbol",
       "id": 801,
       "value": ","
     },
-    "Token_33": {
+    "Token_106": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_107": {
       "type": "Identifier",
-      "id": 3001,
-      "value": "x"
+      "id": 3022,
+      "value": "pname"
     },
-    "Token_34": {
+    "Token_108": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_109": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_110": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_111": {
+      "type": "Keyword",
+      "id": 4,
+      "value": "char"
+    },
+    "Token_112": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_35": {
+    "Token_113": {
       "type": "Keyword",
-      "id": 16,
-      "value": "exit"
+      "id": 20,
+      "value": "function"
     },
-    "Token_36": {
+    "Token_114": {
+      "type": "Identifier",
+      "id": 3023,
+      "value": "insert_front"
+    },
+    "Token_115": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_116": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_117": {
+      "type": "Identifier",
+      "id": 3005,
+      "value": "void"
+    },
+    "Token_118": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_119": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_120": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_121": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_122": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_123": {
+      "type": "Identifier",
+      "id": 3020,
+      "value": "listT,"
+    },
+    "Token_124": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_37": {
-      "type": "Keyword",
-      "id": 14,
-      "value": "endfun"
+    "Token_125": {
+      "type": "Identifier",
+      "id": 3024,
+      "value": "pnode"
     },
-    "Token_38": {
+    "Token_126": {
       "type": "Keyword",
-      "id": 29,
-      "value": "main"
+      "id": 32,
+      "value": "of"
     },
-    "Token_39": {
+    "Token_127": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_128": {
+      "type": "Identifier",
+      "id": 3025,
+      "value": "NodeptrT"
+    },
+    "Token_129": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_130": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_131": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "remove_front"
+    },
+    "Token_132": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_133": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_134": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "NodePtr"
+    },
+    "Token_135": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_136": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_137": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_138": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_139": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_140": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_141": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "listT"
+    },
+    "Token_142": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_143": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_144": {
+      "type": "Identifier",
+      "id": 3028,
+      "value": "traverse_display"
+    },
+    "Token_145": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_146": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_147": {
+      "type": "Identifier",
+      "id": 3005,
+      "value": "void"
+    },
+    "Token_148": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_149": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_150": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_151": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_152": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_153": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "listT"
+    },
+    "Token_154": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_155": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_156": {
+      "type": "Identifier",
+      "id": 3029,
+      "value": "empty_list"
+    },
+    "Token_157": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_158": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_159": {
+      "type": "Identifier",
+      "id": 3030,
+      "value": "bool"
+    },
+    "Token_160": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_161": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_162": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_163": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_164": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_165": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "listT"
+    },
+    "Token_166": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_167": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_168": {
+      "type": "Identifier",
+      "id": 3031,
+      "value": "full_list"
+    },
+    "Token_169": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_170": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_171": {
+      "type": "Identifier",
+      "id": 3030,
+      "value": "bool"
+    },
+    "Token_172": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_173": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_174": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_175": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_176": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_177": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "listT"
+    },
+    "Token_178": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_179": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_180": {
+      "type": "Identifier",
+      "id": 3032,
+      "value": "remove_node"
+    },
+    "Token_181": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_182": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_183": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "NodePtr"
+    },
+    "Token_184": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_185": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_186": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_187": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_188": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_189": {
+      "type": "Identifier",
+      "id": 3020,
+      "value": "listT,"
+    },
+    "Token_190": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_191": {
+      "type": "Identifier",
+      "id": 3033,
+      "value": "lpos"
+    },
+    "Token_192": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_193": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_194": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_195": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_196": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_197": {
+      "type": "Identifier",
+      "id": 3034,
+      "value": "get_front"
+    },
+    "Token_198": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_199": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_200": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "NodePtr"
+    },
+    "Token_201": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_202": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_203": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_204": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_205": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_206": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_207": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "listT"
+    },
+    "Token_208": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_209": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_210": {
+      "type": "Identifier",
+      "id": 3035,
+      "value": "get_next"
+    },
+    "Token_211": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_212": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_213": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "NodePtr"
+    },
+    "Token_214": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_215": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_216": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_217": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_218": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_219": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_220": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "listT"
+    },
+    "Token_221": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_222": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_223": {
+      "type": "Identifier",
+      "id": 3036,
+      "value": "remove_last"
+    },
+    "Token_224": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_225": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_226": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "NodePtr"
+    },
+    "Token_227": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_228": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_229": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_230": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_231": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_232": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_233": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "listT"
+    },
+    "Token_234": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_235": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_236": {
+      "type": "Identifier",
+      "id": 3037,
+      "value": "csize"
+    },
+    "Token_237": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_238": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_239": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_240": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_241": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_242": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_243": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_244": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_245": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_246": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "listT"
+    },
+    "Token_247": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_248": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_249": {
+      "type": "Identifier",
+      "id": 3038,
+      "value": "insert_node"
+    },
+    "Token_250": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_251": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_252": {
+      "type": "Identifier",
+      "id": 3005,
+      "value": "void"
+    },
+    "Token_253": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_254": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_255": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_256": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_257": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_258": {
+      "type": "Identifier",
+      "id": 3020,
+      "value": "listT,"
+    },
+    "Token_259": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_260": {
+      "type": "Identifier",
+      "id": 3024,
+      "value": "pnode"
+    },
+    "Token_261": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_262": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_263": {
+      "type": "Identifier",
+      "id": 3039,
+      "value": "NodePtr,"
+    },
+    "Token_264": {
+      "type": "Identifier",
+      "id": 3040,
+      "value": "lposition"
+    },
+    "Token_265": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_266": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_267": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_268": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_269": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_270": {
+      "type": "Identifier",
+      "id": 3041,
+      "value": "get_node"
+    },
+    "Token_271": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_272": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_273": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "NodePtr"
+    },
+    "Token_274": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_275": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "plist"
+    },
+    "Token_276": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_277": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_278": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_279": {
+      "type": "Identifier",
+      "id": 3020,
+      "value": "listT,"
+    },
+    "Token_280": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_281": {
+      "type": "Identifier",
+      "id": 3033,
+      "value": "lpos"
+    },
+    "Token_282": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_283": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_284": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_285": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
