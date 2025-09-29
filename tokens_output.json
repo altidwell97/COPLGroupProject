@@ -31,12 +31,7 @@
     ],
     [
       "display",
-      "\"Welcome",
-      "to",
-      "the",
-      "world",
-      "of",
-      "SCL\""
+      "\"Welcome to the world of SCL\""
     ],
     [
       "set",
@@ -46,10 +41,8 @@
     ],
     [
       "display",
-      "\"Value",
-      "of",
-      "x:",
-      "\",",
+      "\"Value of x: \"",
+      ",",
       "x"
     ],
     [
@@ -179,32 +172,32 @@
     "Token_23": {
       "type": "StringLiteral",
       "id": 5000,
-      "value": "\"Welcome"
+      "value": "\"Welcome to the world of SCL\""
     },
     "Token_24": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "to"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_25": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "the"
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
     },
     "Token_26": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "world"
+      "type": "Identifier",
+      "id": 3001,
+      "value": "x"
     },
     "Token_27": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "of"
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_28": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "SCL\""
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "45.95"
     },
     "Token_29": {
       "type": "EndOfStatement",
@@ -213,23 +206,23 @@
     },
     "Token_30": {
       "type": "Keyword",
-      "id": 37,
-      "value": "set"
+      "id": 9,
+      "value": "display"
     },
     "Token_31": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Value of x: \""
+    },
+    "Token_32": {
+      "type": "SpeacialSymbol",
+      "id": 801,
+      "value": ","
+    },
+    "Token_33": {
       "type": "Identifier",
       "id": 3001,
       "value": "x"
-    },
-    "Token_32": {
-      "type": "Operator",
-      "id": 408,
-      "value": "="
-    },
-    "Token_33": {
-      "type": "NumericaLiteral",
-      "id": 4000,
-      "value": "45.95"
     },
     "Token_34": {
       "type": "EndOfStatement",
@@ -238,60 +231,25 @@
     },
     "Token_35": {
       "type": "Keyword",
-      "id": 9,
-      "value": "display"
-    },
-    "Token_36": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "\"Value"
-    },
-    "Token_37": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "of"
-    },
-    "Token_38": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "x:"
-    },
-    "Token_39": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "\","
-    },
-    "Token_40": {
-      "type": "Identifier",
-      "id": 3001,
-      "value": "x"
-    },
-    "Token_41": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
-    },
-    "Token_42": {
-      "type": "Keyword",
       "id": 16,
       "value": "exit"
     },
-    "Token_43": {
+    "Token_36": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_44": {
+    "Token_37": {
       "type": "Keyword",
       "id": 14,
       "value": "endfun"
     },
-    "Token_45": {
+    "Token_38": {
       "type": "Keyword",
       "id": 29,
       "value": "main"
     },
-    "Token_46": {
+    "Token_39": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"

@@ -43,44 +43,42 @@ def tokenizefile(filename):
 
 
 commandLine = sys.argv  # what is inputted into the CLI
-in_quotes = False
+
 identifier_id = 3000
 identifier_list = {}
+# Categorizes the type and creates a token object that contains the type, id,
+# and value of a given token
 def token_catorizer(token):
-    global in_quotes
     global identifier_id
-    if in_quotes == True:
-        if str(token).endswith("\"") or str(token).startswith("\""):
-            set_boolean(False)
-            return Token("StringLiteral", 5000, token)
-        else:
-            return Token("StringLiteral", 5000, token)
-    else:
-        if str(token).startswith("\"") and str(token).endswith("\""):
-            return Token("StringLiteral", 5000, token)
-        elif str(token).startswith("\""):
-            set_boolean(True)
-            return Token("StringLiteral", 5000, token)
-        elif token in token_list["keywords"]:
-            return Token("Keyword", token_list["keywords"][token], token)
-        elif token in token_list["operators"]:
-            return Token("Operator", token_list["operators"][token], token)
-        elif token in token_list["special symbols"]:
-            return Token("SpeacialSymbol", token_list["special symbols"][token], token)
-        elif re.match(r"[a-zA-Z_]", str(token)):
-            if token in identifier_list:
-                return Token("Identifier", identifier_list[token], token)
-            identifier_id += 1
-            identifier = Token("Identifier", identifier_id, token)
-            identifier_list[token] = identifier_id
-            return identifier
-        elif re.match(r"[0-9]", str(token)):
-            return Token("NumericaLiteral", 4000, token)
-        return Token("Unkown", 1200, token)
-
-def set_boolean(new_value):
-    global in_quotes
-    in_quotes = new_value
+    # Checks for string contained within double quotes
+    if str(token).startswith("\"") and str(token).endswith("\""):
+        return Token("StringLiteral", 5000, token)
+    # Searches Token.py for if the token matches a keyword
+    elif token in token_list["keywords"]:
+        return Token("Keyword", token_list["keywords"][token], token)
+    # Searches Token.py for if the token matches an operator
+    elif token in token_list["operators"]:
+        return Token("Operator", token_list["operators"][token], token)
+    # Searches Token.py for if the token matches a special symbol
+    elif token in token_list["special symbols"]:
+        return Token("SpeacialSymbol", token_list["special symbols"][token], token)
+    # If token is not contained in Token.py and contains alphabetical characters
+    # that are not within double quotes it becomes an identifier. Keeps track of 
+    # previous identifiers so that multiple instances of one identifier are treated
+    # as the same identifier
+    elif re.match(r"[a-zA-Z_]", str(token)):
+        if token in identifier_list:
+            return Token("Identifier", identifier_list[token], token)
+        identifier_id += 1
+        identifier = Token("Identifier", identifier_id, token)
+        identifier_list[token] = identifier_id
+        return identifier
+    # If token is not contained in Token.py and contains numeric characters
+    # that are not within double quotes it becomes a numeric literal.
+    elif re.match(r"[0-9]", str(token)):
+        return Token("NumericaLiteral", 4000, token)
+    # If token does not fall into any of the above categories
+    return Token("Unkown", 1200, token)
 
 #tokenizefile('SCL/welcome.scl')
 
@@ -90,6 +88,7 @@ commandLine = sys.argv #What is inputted into the CLI
 #Ex: python Test/scl_scanner.py SCL/welcome.scl
 #May need to move to the correct directory with the cd command on the CLI
 if __name__ == "__main__":
+    in_quotes = False
     if len(commandLine) < 2:
         print("Usage: python scl_scanner.py <file.scl> [output.json]")
         sys.exit(1)
@@ -109,10 +108,35 @@ if __name__ == "__main__":
 
     final_dictionary = {}
 
-    for token in document:
+    # Combine string literals within a set of double quotes into one token
+    reorganized_document = []
+    for line in document:
+        line_of_doc = []
+        for token in line:
+            if in_quotes:
+                if(token.endswith("\"")):
+                    in_quotes = False
+                    combined_token += (" " + token)
+                    line_of_doc.append(combined_token)
+                elif(token.startswith("\"")):
+                    in_quotes = False
+                    combined_token += " \""
+                    line_of_doc.append(combined_token)
+                    token = token[1:]
+                    line_of_doc.append(token)
+                else:
+                    combined_token += (" " + token)
+            else:
+                if(token.startswith("\"") and not token.endswith("\"")):
+                    in_quotes = True
+                    combined_token = token
+                    continue
+                line_of_doc.append(token)
+        reorganized_document.append(line_of_doc)
+
+    # Runs through the list of list of the tokens and categorizes them by type
+    for token in reorganized_document:
         for item in token:
-            # current_token = token_catorizer(item)
-            # print(current_token)
             new_token = token_catorizer(item)
             categorized_list.append(new_token)
             print("Token created: ", new_token.get_data())
@@ -120,6 +144,8 @@ if __name__ == "__main__":
         print("Token created: ", new_token.get_data())
         categorized_list.append(new_token)
 
+    # Gives the categorized token objects a dictionary with string values to allow
+    # exporting it to the JSON file
     iterator = 0
     for Token in categorized_list:
         token_str = "Token_" + str(iterator)
@@ -138,7 +164,7 @@ if __name__ == "__main__":
     #  write json showing both shapes
     payload = {
         "source": src_path,
-        "tokens_by_line": document,
+        "tokens_by_line": reorganized_document,
         "tokens_flat": final_dictionary
     }
     
