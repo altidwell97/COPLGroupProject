@@ -1,44 +1,32 @@
 {
-  "source": "SCL/linkedg.scl",
+  "source": "SCL/datablistp.scl",
   "tokens_by_line": [
     [
       "import",
-      "\"scl.h\""
+      "<stdio.h>"
+    ],
+    [
+      "import",
+      "<stdlib.h>"
+    ],
+    [
+      "import",
+      "<string.h>"
+    ],
+    [
+      "import",
+      "\"basic_lib.h\""
+    ],
+    [
+      "import",
+      "\"linked.h\""
     ],
     [
       "specifications"
     ],
     [
       "struct",
-      "node",
-      "is"
-    ],
-    [
-      "structures"
-    ],
-    [
-      "define",
-      "datablock",
-      "pointer",
-      "of",
-      "type",
-      "void"
-    ],
-    [
-      "define",
-      "link",
-      "pointer",
-      "of",
-      "type",
-      "NodeType"
-    ],
-    [
-      "endstruct",
-      "node"
-    ],
-    [
-      "struct",
-      "llist",
+      "Datablock",
       "is"
     ],
     [
@@ -46,65 +34,36 @@
     ],
     [
       "define",
-      "numnodes",
-      "of",
-      "type",
-      "integer"
-    ],
-    [
-      "define",
-      "maxnodes",
-      "of",
-      "type",
-      "integer"
-    ],
-    [
-      "define",
-      "sname",
+      "stname",
       "array",
-      "[30]",
+      "[31]",
       "of",
       "type",
       "char"
     ],
     [
-      "structures"
+      "define",
+      "age",
+      "of",
+      "type",
+      "integer"
     ],
     [
       "define",
-      "Head",
+      "jobcode",
       "of",
       "type",
-      "NodePtrT"
-    ],
-    [
-      "define",
-      "current",
-      "of",
-      "type",
-      "NodePtrT"
+      "integer"
     ],
     [
       "endstruct",
-      "llist"
+      "Datablock"
     ],
     [
       "definetype",
       "struct",
-      "node",
-      "NodeType"
-    ],
-    [
-      "definetype",
-      "pointer",
-      "NodeType",
-      "NodePtrT"
-    ],
-    [
-      "definetype",
-      "struct",
-      "llist",
-      "listT"
+      "Datablock",
+      "DataT"
     ],
     [
       "forward",
@@ -112,64 +71,40 @@
     ],
     [
       "function",
-      "create_list",
+      "make_dblock",
+      "return",
+      "pointer",
+      "type",
+      "DataT",
+      "parameters"
+    ],
+    [
+      "nname",
+      "pointer",
+      "of",
+      "type",
+      "char,",
+      "nage",
+      "of",
+      "type",
+      "integer,",
+      "njobcode",
+      "of",
+      "type",
+      "integer"
+    ],
+    [
+      "function",
+      "display_data",
       "return",
       "type",
       "void",
       "parameters",
-      "plist",
+      "pdata",
       "pointer",
       "of",
       "type",
-      "listT,"
-    ],
-    [
-      "maxn",
-      "of",
-      "type",
-      "integer",
-      ","
-    ],
-    [
-      "pname",
-      "pointer",
-      "of",
-      "type",
-      "char"
-    ],
-    [
-      "function",
-      "insert_front",
-      "return",
-      "type",
-      "void",
-      "parameters",
-      "plist",
-      "pointer",
-      "of",
-      "type",
-      "listT,"
-    ],
-    [
-      "pnode",
-      "of",
-      "type",
-      "NodeptrT"
-    ],
-    [
-      "function",
-      "remove_front",
-      "return",
-      "type",
-      "NodePtr"
-    ],
-    [
-      "parameters",
-      "plist",
-      "pointer",
-      "of",
-      "type",
-      "listT"
+      "DataT"
     ],
     [
       "function",
@@ -185,151 +120,697 @@
       "listT"
     ],
     [
-      "function",
-      "empty_list",
-      "return",
-      "type",
-      "bool",
-      "parameters",
-      "plist",
-      "pointer",
-      "of",
-      "type",
-      "listT"
+      "implementations"
     ],
     [
       "function",
-      "full_list",
+      "main",
       "return",
       "type",
-      "bool",
-      "parameters",
-      "plist",
-      "pointer",
-      "of",
-      "type",
-      "listT"
+      "integer",
+      "is"
     ],
     [
-      "function",
-      "remove_node",
-      "return",
-      "type",
-      "NodePtr",
-      "parameters",
-      "plist",
-      "pointer",
-      "of",
-      "type",
-      "listT,"
+      "variables"
     ],
     [
-      "lpos",
+      "define",
+      "max_nodes",
       "of",
       "type",
       "integer"
     ],
     [
-      "function",
-      "get_front",
-      "return",
+      "define",
+      "cname",
+      "array",
+      "[30]",
+      "of",
       "type",
-      "NodePtr",
-      "parameters"
+      "char"
     ],
     [
-      "plist",
+      "structures"
+    ],
+    [
+      "define",
+      "mlist",
+      "of",
+      "type",
+      "listT"
+    ],
+    [
+      "define",
+      "clist",
       "pointer",
       "of",
       "type",
       "listT"
     ],
     [
-      "function",
-      "get_next",
-      "return",
-      "type",
-      "NodePtr",
-      "parameters"
-    ],
-    [
-      "plist",
+      "define",
+      "dblock",
       "pointer",
       "of",
       "type",
-      "listT"
+      "DataT"
+    ],
+    [
+      "define",
+      "nodePtr",
+      "of",
+      "type",
+      "nodePtrT"
+    ],
+    [
+      "begin"
+    ],
+    [
+      "set",
+      "clist",
+      "=",
+      "address",
+      "mlist"
+    ],
+    [
+      "call",
+      "create_list",
+      "using",
+      "clist,",
+      "40,",
+      "\"Data list\""
+    ],
+    [
+      "set",
+      "dblock",
+      "=",
+      "make_dblock(\"John",
+      "Doe\",",
+      "38,",
+      "1523)"
+    ],
+    [
+      "create",
+      "nodePtr",
+      "type",
+      "NodeType"
+    ],
+    [
+      "set",
+      "xxx",
+      "=",
+      "dblock"
+    ],
+    [
+      "display",
+      "\"Inserting node to front of list\""
+    ],
+    [
+      "call",
+      "insert_front",
+      "using",
+      "clist,",
+      "nodePtr"
+    ],
+    [
+      "set",
+      "dblock",
+      "=",
+      "make_dblock(\"Joseph",
+      "Hunt\",",
+      "59,",
+      "1783)"
+    ],
+    [
+      "set",
+      "nodePtr->datablock",
+      "=",
+      "dblock"
+    ],
+    [
+      "call",
+      "insert_front",
+      "using",
+      "clist,",
+      "nodePtr"
+    ],
+    [
+      "set",
+      "dblock",
+      "=",
+      "make_dblock(\"William",
+      "Dash\",",
+      "49,",
+      "2581)"
+    ],
+    [
+      "set",
+      "nodePtr->datablock",
+      "=",
+      "dblock"
+    ],
+    [
+      "call",
+      "insert_front",
+      "using",
+      "clist,",
+      "nodePtr"
+    ],
+    [
+      "call",
+      "traverse_display",
+      "using",
+      "clist"
+    ],
+    [
+      "display",
+      "\"Removing front: \""
+    ],
+    [
+      "set",
+      "nodePtr",
+      "=",
+      "remove_front(clist)"
+    ],
+    [
+      "set",
+      "dblock",
+      "=",
+      "nodePtr->dblock"
+    ],
+    [
+      "call",
+      "display_data",
+      "using",
+      "dblock"
+    ],
+    [
+      "destroy",
+      "nodePtr"
+    ],
+    [
+      "destroy",
+      "dblock"
+    ],
+    [
+      "call",
+      "traverse_display",
+      "using",
+      "clist"
+    ],
+    [
+      "set",
+      "dblock",
+      "=",
+      "make_dblock(\"David",
+      "Winemaker\",",
+      "48,",
+      "1854)"
+    ],
+    [
+      "call",
+      "display_data",
+      "using",
+      "dblock"
+    ],
+    [
+      "create",
+      "nodePtr",
+      "type",
+      "NodeType"
+    ],
+    [
+      "set",
+      "nodePtr->datablock",
+      "=",
+      "dblock"
+    ],
+    [
+      "display",
+      "\"Inserting node to pos 2: \""
+    ],
+    [
+      "call",
+      "insert_node",
+      "using",
+      "clist,",
+      "nodePtr,",
+      "2"
+    ],
+    [
+      "call",
+      "traverse_display",
+      "using",
+      "clist"
+    ],
+    [
+      "set",
+      "dblock",
+      "=",
+      "make_dblock(\"Mary",
+      "Washington\",",
+      "54,",
+      "1457)"
+    ],
+    [
+      "display",
+      "\"Inserting 3: \""
+    ],
+    [
+      "call",
+      "display_data",
+      "using",
+      "dblock"
+    ],
+    [
+      "create",
+      "nodePtr",
+      "type",
+      "NodeType"
+    ],
+    [
+      "set",
+      "nodePtr->datablock",
+      "=",
+      "dblock"
+    ],
+    [
+      "call",
+      "insert_node",
+      "using",
+      "clist,",
+      "dblock,",
+      "3"
+    ],
+    [
+      "call",
+      "traverse_display",
+      "using",
+      "clist"
+    ],
+    [
+      "display",
+      "\"Inserting front: \""
+    ],
+    [
+      "set",
+      "dblock",
+      "=",
+      "make_dblock(\"Ann",
+      "Smith\",",
+      "44,",
+      "1568)"
+    ],
+    [
+      "call",
+      "display_data",
+      "using",
+      "dblock"
+    ],
+    [
+      "create",
+      "nodePtr",
+      "type",
+      "NodeType"
+    ],
+    [
+      "set",
+      "nodePtr->datablock",
+      "=",
+      "dblock"
+    ],
+    [
+      "call",
+      "insert_front",
+      "using",
+      "clist,",
+      "nodePtr"
+    ],
+    [
+      "call",
+      "traverse_display",
+      "using",
+      "clist"
+    ],
+    [
+      "display",
+      "\"Remove node 2 \""
+    ],
+    [
+      "set",
+      "nodePtr",
+      "=",
+      "remove_node(clist,",
+      "2)"
+    ],
+    [
+      "set",
+      "dblock",
+      "=",
+      "nodePtr->datablock"
+    ],
+    [
+      "call",
+      "display_data",
+      "using",
+      "dblock"
+    ],
+    [
+      "call",
+      "traverse_display",
+      "using",
+      "clist"
+    ],
+    [
+      "destroy",
+      "nodePtr"
+    ],
+    [
+      "destroy",
+      "dblock"
+    ],
+    [
+      "display",
+      "\"Removing last node\""
+    ],
+    [
+      "set",
+      "nodePtr",
+      "=",
+      "remove_last(clist)"
+    ],
+    [
+      "set",
+      "dblock",
+      "=",
+      "nodePtr->datablock"
+    ],
+    [
+      "call",
+      "display_data",
+      "using",
+      "dblock"
+    ],
+    [
+      "call",
+      "traverse_display",
+      "using",
+      "clist"
+    ],
+    [
+      "destroy",
+      "nodePtr"
+    ],
+    [
+      "destroy",
+      "dblock"
+    ],
+    [
+      "return",
+      "0"
+    ],
+    [
+      "endfun",
+      "main"
     ],
     [
       "function",
-      "remove_last",
+      "make_dblock",
       "return",
+      "pointer",
       "type",
-      "NodePtr",
-      "parameters"
+      "DataT"
     ],
     [
-      "plist",
+      "parameters",
+      "pname",
       "pointer",
       "of",
       "type",
-      "listT"
+      "char,",
+      "page",
+      "of",
+      "type",
+      "integer,"
     ],
     [
-      "function",
-      "csize",
-      "return",
+      "pjobcode",
+      "of",
       "type",
       "integer",
-      "parameters"
+      "is"
     ],
     [
-      "plist",
+      "variables"
+    ],
+    [
+      "define",
+      "dbsize",
+      "of",
+      "type",
+      "integer"
+    ],
+    [
+      "structures"
+    ],
+    [
+      "define",
+      "ldatab",
       "pointer",
       "of",
       "type",
-      "listT"
+      "DataT"
+    ],
+    [
+      "begin"
+    ],
+    [
+      "create",
+      "ldatab",
+      "type",
+      "DataT"
+    ],
+    [
+      "call",
+      "strcpy",
+      "using",
+      "ldatab->name,",
+      "pname"
+    ],
+    [
+      "set",
+      "ldatab->age",
+      "=",
+      "page"
+    ],
+    [
+      "set",
+      "ldatab->jobcode",
+      "=",
+      "pjobcode"
+    ],
+    [
+      "return",
+      "ldatab"
+    ],
+    [
+      "endfun",
+      "make_dblock"
     ],
     [
       "function",
-      "insert_node",
+      "display_data",
       "return",
       "type",
       "void",
       "parameters",
-      "plist",
+      "pblock",
       "pointer",
       "of",
       "type",
-      "listT,"
+      "DataT",
+      "is"
     ],
     [
-      "pnode",
+      "variables"
+    ],
+    [
+      "define",
+      "lname",
+      "array[30]",
       "of",
       "type",
-      "NodePtr,",
-      "lposition",
+      "char"
+    ],
+    [
+      "define",
+      "ljobc",
       "of",
       "type",
       "integer"
     ],
     [
+      "define",
+      "lage",
+      "of",
+      "type",
+      "integer"
+    ],
+    [
+      "begin"
+    ],
+    [
+      "call",
+      "strcpy",
+      "using",
+      "lname,",
+      "pblock->name"
+    ],
+    [
+      "set",
+      "ljobc",
+      "=",
+      "pblock->jobcode"
+    ],
+    [
+      "set",
+      "lage",
+      "=",
+      "pblock->age"
+    ],
+    [
+      "display",
+      "\"Data name: \"",
+      ",",
+      "lname"
+    ],
+    [
+      "display",
+      "\"Data age: \"",
+      ",",
+      "lage"
+    ],
+    [
+      "display",
+      "\"Data job code: \"",
+      ",",
+      "ljobc"
+    ],
+    [
+      "endfun",
+      "display_data"
+    ],
+    [
       "function",
-      "get_node",
+      "traverse_display",
       "return",
       "type",
-      "NodePtr",
+      "typee",
       "parameters",
       "plist",
       "pointer",
       "of",
       "type",
-      "listT,"
+      "listT",
+      "is"
     ],
     [
-      "lpos",
+      "variables"
+    ],
+    [
+      "define",
+      "i",
       "of",
       "type",
       "integer"
+    ],
+    [
+      "structures"
+    ],
+    [
+      "define",
+      "lblock",
+      "pointer",
+      "of",
+      "type",
+      "DataT"
+    ],
+    [
+      "define",
+      "cnodePtr",
+      "of",
+      "type",
+      "nodePtrT"
+    ],
+    [
+      "begin"
+    ],
+    [
+      "display",
+      "\"Traverse and display data in list\""
+    ],
+    [
+      "if",
+      "plist->numnodes",
+      "<=",
+      "0",
+      "then"
+    ],
+    [
+      "return"
+    ],
+    [
+      "endif"
+    ],
+    [
+      "set",
+      "cnodePtr",
+      "=",
+      "get_front(plist)"
+    ],
+    [
+      "set",
+      "lblock",
+      "=",
+      "cnodePtr->datablock"
+    ],
+    [
+      "call",
+      "display_data",
+      "using",
+      "lblock"
+    ],
+    [
+      "for",
+      "i=2",
+      "to",
+      "plist->numnodes",
+      "loop"
+    ],
+    [
+      "set",
+      "cnodePtr",
+      "=",
+      "get_next(plist)"
+    ],
+    [
+      "set",
+      "lblock",
+      "=",
+      "cnoPtr->datablock"
+    ],
+    [
+      "call",
+      "display_data",
+      "using",
+      "lblock"
+    ],
+    [
+      "endfor"
+    ],
+    [
+      "endfun",
+      "traverse_display"
     ]
   ],
   "tokens_flat": {
@@ -339,9 +820,9 @@
       "value": "import"
     },
     "Token_1": {
-      "type": "StringLiteral",
-      "id": 5000,
-      "value": "\"scl.h\""
+      "type": "Unknown",
+      "id": 1200,
+      "value": "<stdio.h>"
     },
     "Token_2": {
       "type": "EndOfStatement",
@@ -349,29 +830,29 @@
       "value": "EOS"
     },
     "Token_3": {
-      "type": "Identifier",
-      "id": 3001,
-      "value": "specifications"
+      "type": "Keyword",
+      "id": 23,
+      "value": "import"
     },
     "Token_4": {
+      "type": "Unknown",
+      "id": 1200,
+      "value": "<stdlib.h>"
+    },
+    "Token_5": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_5": {
-      "type": "Identifier",
-      "id": 3002,
-      "value": "struct"
-    },
     "Token_6": {
-      "type": "Identifier",
-      "id": 3003,
-      "value": "node"
+      "type": "Keyword",
+      "id": 23,
+      "value": "import"
     },
     "Token_7": {
-      "type": "Keyword",
-      "id": 26,
-      "value": "is"
+      "type": "Unknown",
+      "id": 1200,
+      "value": "<string.h>"
     },
     "Token_8": {
       "type": "EndOfStatement",
@@ -380,183 +861,183 @@
     },
     "Token_9": {
       "type": "Keyword",
-      "id": 39,
-      "value": "structures"
+      "id": 23,
+      "value": "import"
     },
     "Token_10": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"basic_lib.h\""
     },
     "Token_11": {
-      "type": "Keyword",
-      "id": 8,
-      "value": "define"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_12": {
-      "type": "Identifier",
-      "id": 3004,
-      "value": "datablock"
+      "type": "Keyword",
+      "id": 23,
+      "value": "import"
     },
     "Token_13": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"linked.h\""
     },
     "Token_14": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_15": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Identifier",
+      "id": 3001,
+      "value": "specifications"
     },
     "Token_16": {
-      "type": "Identifier",
-      "id": 3005,
-      "value": "void"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_17": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
-    },
-    "Token_18": {
-      "type": "Keyword",
-      "id": 8,
-      "value": "define"
-    },
-    "Token_19": {
-      "type": "Identifier",
-      "id": 3006,
-      "value": "link"
-    },
-    "Token_20": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
-    },
-    "Token_21": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
-    },
-    "Token_22": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
-    "Token_23": {
-      "type": "Identifier",
-      "id": 3007,
-      "value": "NodeType"
-    },
-    "Token_24": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
-    },
-    "Token_25": {
-      "type": "Identifier",
-      "id": 3008,
-      "value": "endstruct"
-    },
-    "Token_26": {
-      "type": "Identifier",
-      "id": 3003,
-      "value": "node"
-    },
-    "Token_27": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
-    },
-    "Token_28": {
       "type": "Identifier",
       "id": 3002,
       "value": "struct"
     },
-    "Token_29": {
+    "Token_18": {
       "type": "Identifier",
-      "id": 3009,
-      "value": "llist"
+      "id": 3003,
+      "value": "Datablock"
     },
-    "Token_30": {
+    "Token_19": {
       "type": "Keyword",
       "id": 26,
       "value": "is"
     },
-    "Token_31": {
+    "Token_20": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_32": {
+    "Token_21": {
       "type": "Keyword",
       "id": 44,
       "value": "variables"
     },
-    "Token_33": {
+    "Token_22": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
+    },
+    "Token_23": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_24": {
+      "type": "Identifier",
+      "id": 3004,
+      "value": "stname"
+    },
+    "Token_25": {
+      "type": "Keyword",
+      "id": 1,
+      "value": "array"
+    },
+    "Token_26": {
+      "type": "Unknown",
+      "id": 1200,
+      "value": "[31]"
+    },
+    "Token_27": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_28": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_29": {
+      "type": "Keyword",
+      "id": 4,
+      "value": "char"
+    },
+    "Token_30": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_31": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_32": {
+      "type": "Identifier",
+      "id": 3005,
+      "value": "age"
+    },
+    "Token_33": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
     },
     "Token_34": {
       "type": "Keyword",
-      "id": 8,
-      "value": "define"
-    },
-    "Token_35": {
-      "type": "Identifier",
-      "id": 3010,
-      "value": "numnodes"
-    },
-    "Token_36": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
-    },
-    "Token_37": {
-      "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_38": {
+    "Token_35": {
       "type": "Keyword",
       "id": 25,
       "value": "integer"
     },
-    "Token_39": {
+    "Token_36": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_40": {
+    "Token_37": {
       "type": "Keyword",
       "id": 8,
       "value": "define"
     },
-    "Token_41": {
+    "Token_38": {
       "type": "Identifier",
-      "id": 3011,
-      "value": "maxnodes"
+      "id": 3006,
+      "value": "jobcode"
     },
-    "Token_42": {
+    "Token_39": {
       "type": "Keyword",
       "id": 32,
       "value": "of"
     },
-    "Token_43": {
+    "Token_40": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_44": {
+    "Token_41": {
       "type": "Keyword",
       "id": 25,
       "value": "integer"
+    },
+    "Token_42": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_43": {
+      "type": "Identifier",
+      "id": 3007,
+      "value": "endstruct"
+    },
+    "Token_44": {
+      "type": "Identifier",
+      "id": 3003,
+      "value": "Datablock"
     },
     "Token_45": {
       "type": "EndOfStatement",
@@ -564,39 +1045,39 @@
       "value": "EOS"
     },
     "Token_46": {
-      "type": "Keyword",
-      "id": 8,
-      "value": "define"
+      "type": "Identifier",
+      "id": 3008,
+      "value": "definetype"
     },
     "Token_47": {
       "type": "Identifier",
-      "id": 3012,
-      "value": "sname"
+      "id": 3002,
+      "value": "struct"
     },
     "Token_48": {
-      "type": "Keyword",
-      "id": 1,
-      "value": "array"
+      "type": "Identifier",
+      "id": 3003,
+      "value": "Datablock"
     },
     "Token_49": {
-      "type": "Unknown",
-      "id": 1200,
-      "value": "[30]"
+      "type": "Identifier",
+      "id": 3009,
+      "value": "DataT"
     },
     "Token_50": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_51": {
       "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "id": 19,
+      "value": "forward"
     },
     "Token_52": {
       "type": "Keyword",
-      "id": 4,
-      "value": "char"
+      "id": 7,
+      "value": "declarations"
     },
     "Token_53": {
       "type": "EndOfStatement",
@@ -605,38 +1086,38 @@
     },
     "Token_54": {
       "type": "Keyword",
-      "id": 39,
-      "value": "structures"
+      "id": 20,
+      "value": "function"
     },
     "Token_55": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "Identifier",
+      "id": 3010,
+      "value": "make_dblock"
     },
     "Token_56": {
       "type": "Keyword",
-      "id": 8,
-      "value": "define"
+      "id": 35,
+      "value": "return"
     },
     "Token_57": {
-      "type": "Identifier",
-      "id": 3013,
-      "value": "Head"
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
     },
     "Token_58": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
-    },
-    "Token_59": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_60": {
+    "Token_59": {
       "type": "Identifier",
-      "id": 3014,
-      "value": "NodePtrT"
+      "id": 3009,
+      "value": "DataT"
+    },
+    "Token_60": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
     },
     "Token_61": {
       "type": "EndOfStatement",
@@ -644,14 +1125,14 @@
       "value": "EOS"
     },
     "Token_62": {
-      "type": "Keyword",
-      "id": 8,
-      "value": "define"
+      "type": "Identifier",
+      "id": 3011,
+      "value": "nname"
     },
     "Token_63": {
-      "type": "Identifier",
-      "id": 3015,
-      "value": "current"
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
     },
     "Token_64": {
       "type": "Keyword",
@@ -665,48 +1146,48 @@
     },
     "Token_66": {
       "type": "Identifier",
-      "id": 3014,
-      "value": "NodePtrT"
+      "id": 3012,
+      "value": "char,"
     },
     "Token_67": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "Identifier",
+      "id": 3013,
+      "value": "nage"
     },
     "Token_68": {
-      "type": "Identifier",
-      "id": 3008,
-      "value": "endstruct"
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
     },
     "Token_69": {
-      "type": "Identifier",
-      "id": 3009,
-      "value": "llist"
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
     },
     "Token_70": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "Identifier",
+      "id": 3014,
+      "value": "integer,"
     },
     "Token_71": {
       "type": "Identifier",
-      "id": 3016,
-      "value": "definetype"
+      "id": 3015,
+      "value": "njobcode"
     },
     "Token_72": {
-      "type": "Identifier",
-      "id": 3002,
-      "value": "struct"
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
     },
     "Token_73": {
-      "type": "Identifier",
-      "id": 3003,
-      "value": "node"
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
     },
     "Token_74": {
-      "type": "Identifier",
-      "id": 3007,
-      "value": "NodeType"
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
     },
     "Token_75": {
       "type": "EndOfStatement",
@@ -714,229 +1195,229 @@
       "value": "EOS"
     },
     "Token_76": {
-      "type": "Identifier",
-      "id": 3016,
-      "value": "definetype"
-    },
-    "Token_77": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
-    },
-    "Token_78": {
-      "type": "Identifier",
-      "id": 3007,
-      "value": "NodeType"
-    },
-    "Token_79": {
-      "type": "Identifier",
-      "id": 3014,
-      "value": "NodePtrT"
-    },
-    "Token_80": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
-    },
-    "Token_81": {
-      "type": "Identifier",
-      "id": 3016,
-      "value": "definetype"
-    },
-    "Token_82": {
-      "type": "Identifier",
-      "id": 3002,
-      "value": "struct"
-    },
-    "Token_83": {
-      "type": "Identifier",
-      "id": 3009,
-      "value": "llist"
-    },
-    "Token_84": {
-      "type": "Identifier",
-      "id": 3017,
-      "value": "listT"
-    },
-    "Token_85": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
-    },
-    "Token_86": {
-      "type": "Keyword",
-      "id": 19,
-      "value": "forward"
-    },
-    "Token_87": {
-      "type": "Keyword",
-      "id": 7,
-      "value": "declarations"
-    },
-    "Token_88": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
-    },
-    "Token_89": {
       "type": "Keyword",
       "id": 20,
       "value": "function"
     },
-    "Token_90": {
+    "Token_77": {
       "type": "Identifier",
-      "id": 3018,
-      "value": "create_list"
+      "id": 3016,
+      "value": "display_data"
     },
-    "Token_91": {
+    "Token_78": {
       "type": "Keyword",
       "id": 35,
       "value": "return"
     },
-    "Token_92": {
+    "Token_79": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_93": {
+    "Token_80": {
       "type": "Identifier",
-      "id": 3005,
+      "id": 3017,
       "value": "void"
     },
-    "Token_94": {
+    "Token_81": {
       "type": "Keyword",
       "id": 33,
       "value": "parameters"
     },
-    "Token_95": {
+    "Token_82": {
       "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
+      "id": 3018,
+      "value": "pdata"
     },
-    "Token_96": {
+    "Token_83": {
       "type": "Keyword",
       "id": 34,
       "value": "pointer"
     },
-    "Token_97": {
+    "Token_84": {
       "type": "Keyword",
       "id": 32,
       "value": "of"
     },
-    "Token_98": {
+    "Token_85": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_99": {
+    "Token_86": {
       "type": "Identifier",
-      "id": 3020,
-      "value": "listT,"
+      "id": 3009,
+      "value": "DataT"
     },
-    "Token_100": {
+    "Token_87": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_101": {
-      "type": "Identifier",
-      "id": 3021,
-      "value": "maxn"
-    },
-    "Token_102": {
+    "Token_88": {
       "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "id": 20,
+      "value": "function"
     },
-    "Token_103": {
+    "Token_89": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
+    },
+    "Token_90": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_91": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
+    "Token_92": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "void"
+    },
+    "Token_93": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_94": {
+      "type": "Identifier",
+      "id": 3020,
+      "value": "plist"
+    },
+    "Token_95": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_96": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_97": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_98": {
+      "type": "Identifier",
+      "id": 3021,
+      "value": "listT"
+    },
+    "Token_99": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_100": {
+      "type": "Keyword",
+      "id": 22,
+      "value": "implementations"
+    },
+    "Token_101": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_102": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_103": {
+      "type": "Keyword",
+      "id": 29,
+      "value": "main"
+    },
     "Token_104": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_105": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_106": {
       "type": "Keyword",
       "id": 25,
       "value": "integer"
     },
-    "Token_105": {
-      "type": "SpeacialSymbol",
-      "id": 801,
-      "value": ","
+    "Token_107": {
+      "type": "Keyword",
+      "id": 26,
+      "value": "is"
     },
-    "Token_106": {
+    "Token_108": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_107": {
+    "Token_109": {
+      "type": "Keyword",
+      "id": 44,
+      "value": "variables"
+    },
+    "Token_110": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_111": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_112": {
       "type": "Identifier",
       "id": 3022,
-      "value": "pname"
+      "value": "max_nodes"
     },
-    "Token_108": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
-    },
-    "Token_109": {
+    "Token_113": {
       "type": "Keyword",
       "id": 32,
       "value": "of"
     },
-    "Token_110": {
+    "Token_114": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_111": {
+    "Token_115": {
       "type": "Keyword",
-      "id": 4,
-      "value": "char"
+      "id": 25,
+      "value": "integer"
     },
-    "Token_112": {
+    "Token_116": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_113": {
-      "type": "Keyword",
-      "id": 20,
-      "value": "function"
-    },
-    "Token_114": {
-      "type": "Identifier",
-      "id": 3023,
-      "value": "insert_front"
-    },
-    "Token_115": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
-    },
-    "Token_116": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
     "Token_117": {
-      "type": "Identifier",
-      "id": 3005,
-      "value": "void"
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
     },
     "Token_118": {
-      "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
+      "type": "Identifier",
+      "id": 3023,
+      "value": "cname"
     },
     "Token_119": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
+      "type": "Keyword",
+      "id": 1,
+      "value": "array"
     },
     "Token_120": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
+      "type": "Unknown",
+      "id": 1200,
+      "value": "[30]"
     },
     "Token_121": {
       "type": "Keyword",
@@ -949,9 +1430,9 @@
       "value": "type"
     },
     "Token_123": {
-      "type": "Identifier",
-      "id": 3020,
-      "value": "listT,"
+      "type": "Keyword",
+      "id": 4,
+      "value": "char"
     },
     "Token_124": {
       "type": "EndOfStatement",
@@ -959,149 +1440,149 @@
       "value": "EOS"
     },
     "Token_125": {
-      "type": "Identifier",
-      "id": 3024,
-      "value": "pnode"
+      "type": "Keyword",
+      "id": 39,
+      "value": "structures"
     },
     "Token_126": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_127": {
       "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "id": 8,
+      "value": "define"
     },
     "Token_128": {
       "type": "Identifier",
-      "id": 3025,
-      "value": "NodeptrT"
+      "id": 3024,
+      "value": "mlist"
     },
     "Token_129": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
     },
     "Token_130": {
       "type": "Keyword",
-      "id": 20,
-      "value": "function"
+      "id": 42,
+      "value": "type"
     },
     "Token_131": {
       "type": "Identifier",
-      "id": 3026,
-      "value": "remove_front"
+      "id": 3021,
+      "value": "listT"
     },
     "Token_132": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_133": {
       "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "id": 8,
+      "value": "define"
     },
     "Token_134": {
       "type": "Identifier",
-      "id": 3027,
-      "value": "NodePtr"
+      "id": 3025,
+      "value": "clist"
     },
     "Token_135": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
     },
     "Token_136": {
       "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
-    },
-    "Token_137": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
-    },
-    "Token_138": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
-    },
-    "Token_139": {
-      "type": "Keyword",
       "id": 32,
       "value": "of"
     },
-    "Token_140": {
+    "Token_137": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_141": {
+    "Token_138": {
       "type": "Identifier",
-      "id": 3017,
+      "id": 3021,
       "value": "listT"
     },
-    "Token_142": {
+    "Token_139": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_143": {
+    "Token_140": {
       "type": "Keyword",
-      "id": 20,
-      "value": "function"
+      "id": 8,
+      "value": "define"
     },
-    "Token_144": {
+    "Token_141": {
       "type": "Identifier",
-      "id": 3028,
-      "value": "traverse_display"
+      "id": 3026,
+      "value": "dblock"
     },
-    "Token_145": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
-    },
-    "Token_146": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
-    "Token_147": {
-      "type": "Identifier",
-      "id": 3005,
-      "value": "void"
-    },
-    "Token_148": {
-      "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
-    },
-    "Token_149": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
-    },
-    "Token_150": {
+    "Token_142": {
       "type": "Keyword",
       "id": 34,
       "value": "pointer"
     },
-    "Token_151": {
+    "Token_143": {
       "type": "Keyword",
       "id": 32,
       "value": "of"
     },
-    "Token_152": {
+    "Token_144": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_153": {
+    "Token_145": {
       "type": "Identifier",
-      "id": 3017,
-      "value": "listT"
+      "id": 3009,
+      "value": "DataT"
+    },
+    "Token_146": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_147": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_148": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_149": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_150": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_151": {
+      "type": "Identifier",
+      "id": 3028,
+      "value": "nodePtrT"
+    },
+    "Token_152": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_153": {
+      "type": "Keyword",
+      "id": 2,
+      "value": "begin"
     },
     "Token_154": {
       "type": "EndOfStatement",
@@ -1110,238 +1591,238 @@
     },
     "Token_155": {
       "type": "Keyword",
-      "id": 20,
-      "value": "function"
+      "id": 37,
+      "value": "set"
     },
     "Token_156": {
       "type": "Identifier",
-      "id": 3029,
-      "value": "empty_list"
+      "id": 3025,
+      "value": "clist"
     },
     "Token_157": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_158": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Identifier",
+      "id": 3029,
+      "value": "address"
     },
     "Token_159": {
       "type": "Identifier",
-      "id": 3030,
-      "value": "bool"
+      "id": 3024,
+      "value": "mlist"
     },
     "Token_160": {
-      "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_161": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
     },
     "Token_162": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
+      "type": "Identifier",
+      "id": 3030,
+      "value": "create_list"
     },
     "Token_163": {
       "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "id": 43,
+      "value": "using"
     },
     "Token_164": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Identifier",
+      "id": 3031,
+      "value": "clist,"
     },
     "Token_165": {
-      "type": "Identifier",
-      "id": 3017,
-      "value": "listT"
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "40,"
     },
     "Token_166": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Data list\""
+    },
+    "Token_167": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_167": {
-      "type": "Keyword",
-      "id": 20,
-      "value": "function"
-    },
     "Token_168": {
-      "type": "Identifier",
-      "id": 3031,
-      "value": "full_list"
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
     },
     "Token_169": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
     },
     "Token_170": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_171": {
       "type": "Identifier",
-      "id": 3030,
-      "value": "bool"
+      "id": 3032,
+      "value": "make_dblock(\"John"
     },
     "Token_172": {
-      "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
+      "type": "Identifier",
+      "id": 3033,
+      "value": "Doe\","
     },
     "Token_173": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "38,"
     },
     "Token_174": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "1523)"
     },
     "Token_175": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_176": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Identifier",
+      "id": 3034,
+      "value": "create"
     },
     "Token_177": {
       "type": "Identifier",
-      "id": 3017,
-      "value": "listT"
+      "id": 3027,
+      "value": "nodePtr"
     },
     "Token_178": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_179": {
+      "type": "Identifier",
+      "id": 3035,
+      "value": "NodeType"
+    },
+    "Token_180": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
-    },
-    "Token_179": {
-      "type": "Keyword",
-      "id": 20,
-      "value": "function"
-    },
-    "Token_180": {
-      "type": "Identifier",
-      "id": 3032,
-      "value": "remove_node"
     },
     "Token_181": {
       "type": "Keyword",
-      "id": 35,
-      "value": "return"
+      "id": 37,
+      "value": "set"
     },
     "Token_182": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Identifier",
+      "id": 3036,
+      "value": "xxx"
     },
     "Token_183": {
-      "type": "Identifier",
-      "id": 3027,
-      "value": "NodePtr"
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_184": {
-      "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
     },
     "Token_185": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_186": {
       "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
+      "id": 9,
+      "value": "display"
     },
     "Token_187": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Inserting node to front of list\""
     },
     "Token_188": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_189": {
-      "type": "Identifier",
-      "id": 3020,
-      "value": "listT,"
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
     },
     "Token_190": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "Identifier",
+      "id": 3037,
+      "value": "insert_front"
     },
     "Token_191": {
-      "type": "Identifier",
-      "id": 3033,
-      "value": "lpos"
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
     },
     "Token_192": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "Identifier",
+      "id": 3031,
+      "value": "clist,"
     },
     "Token_193": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
     },
     "Token_194": {
-      "type": "Keyword",
-      "id": 25,
-      "value": "integer"
-    },
-    "Token_195": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_196": {
+    "Token_195": {
       "type": "Keyword",
-      "id": 20,
-      "value": "function"
+      "id": 37,
+      "value": "set"
+    },
+    "Token_196": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
     },
     "Token_197": {
-      "type": "Identifier",
-      "id": 3034,
-      "value": "get_front"
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_198": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
+      "type": "Identifier",
+      "id": 3038,
+      "value": "make_dblock(\"Joseph"
     },
     "Token_199": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Identifier",
+      "id": 3039,
+      "value": "Hunt\","
     },
     "Token_200": {
-      "type": "Identifier",
-      "id": 3027,
-      "value": "NodePtr"
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "59,"
     },
     "Token_201": {
-      "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "1783)"
     },
     "Token_202": {
       "type": "EndOfStatement",
@@ -1349,94 +1830,94 @@
       "value": "EOS"
     },
     "Token_203": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
     },
     "Token_204": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
+      "type": "Identifier",
+      "id": 3040,
+      "value": "nodePtr->datablock"
     },
     "Token_205": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_206": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
     },
     "Token_207": {
-      "type": "Identifier",
-      "id": 3017,
-      "value": "listT"
-    },
-    "Token_208": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_209": {
+    "Token_208": {
       "type": "Keyword",
-      "id": 20,
-      "value": "function"
+      "id": 3,
+      "value": "call"
+    },
+    "Token_209": {
+      "type": "Identifier",
+      "id": 3037,
+      "value": "insert_front"
     },
     "Token_210": {
-      "type": "Identifier",
-      "id": 3035,
-      "value": "get_next"
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
     },
     "Token_211": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
+      "type": "Identifier",
+      "id": 3031,
+      "value": "clist,"
     },
     "Token_212": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
-    "Token_213": {
       "type": "Identifier",
       "id": 3027,
-      "value": "NodePtr"
+      "value": "nodePtr"
+    },
+    "Token_213": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_214": {
       "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
+      "id": 37,
+      "value": "set"
     },
     "Token_215": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
     },
     "Token_216": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_217": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
+      "type": "Identifier",
+      "id": 3041,
+      "value": "make_dblock(\"William"
     },
     "Token_218": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "Identifier",
+      "id": 3042,
+      "value": "Dash\","
     },
     "Token_219": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "49,"
     },
     "Token_220": {
-      "type": "Identifier",
-      "id": 3017,
-      "value": "listT"
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "2581)"
     },
     "Token_221": {
       "type": "EndOfStatement",
@@ -1445,320 +1926,2275 @@
     },
     "Token_222": {
       "type": "Keyword",
-      "id": 20,
-      "value": "function"
+      "id": 37,
+      "value": "set"
     },
     "Token_223": {
       "type": "Identifier",
-      "id": 3036,
-      "value": "remove_last"
+      "id": 3040,
+      "value": "nodePtr->datablock"
     },
     "Token_224": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_225": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
     },
     "Token_226": {
-      "type": "Identifier",
-      "id": 3027,
-      "value": "NodePtr"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_227": {
       "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
+      "id": 3,
+      "value": "call"
     },
     "Token_228": {
-      "type": "EndOfStatement",
-      "id": 1000,
-      "value": "EOS"
+      "type": "Identifier",
+      "id": 3037,
+      "value": "insert_front"
     },
     "Token_229": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
     },
     "Token_230": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
+      "type": "Identifier",
+      "id": 3031,
+      "value": "clist,"
     },
     "Token_231": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
     },
     "Token_232": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
-    "Token_233": {
-      "type": "Identifier",
-      "id": 3017,
-      "value": "listT"
-    },
-    "Token_234": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
+    },
+    "Token_233": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_234": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
     },
     "Token_235": {
       "type": "Keyword",
-      "id": 20,
-      "value": "function"
+      "id": 43,
+      "value": "using"
     },
     "Token_236": {
       "type": "Identifier",
-      "id": 3037,
-      "value": "csize"
+      "id": 3025,
+      "value": "clist"
     },
     "Token_237": {
-      "type": "Keyword",
-      "id": 35,
-      "value": "return"
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
     },
     "Token_238": {
       "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "id": 9,
+      "value": "display"
     },
     "Token_239": {
-      "type": "Keyword",
-      "id": 25,
-      "value": "integer"
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Removing front: \""
     },
     "Token_240": {
-      "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
-    },
-    "Token_241": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
+    },
+    "Token_241": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
     },
     "Token_242": {
       "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
+      "id": 3027,
+      "value": "nodePtr"
     },
     "Token_243": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_244": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "type": "Identifier",
+      "id": 3043,
+      "value": "remove_front(clist)"
     },
     "Token_245": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
-    "Token_246": {
-      "type": "Identifier",
-      "id": 3017,
-      "value": "listT"
-    },
-    "Token_247": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_248": {
+    "Token_246": {
       "type": "Keyword",
-      "id": 20,
-      "value": "function"
+      "id": 37,
+      "value": "set"
+    },
+    "Token_247": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_248": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
     },
     "Token_249": {
       "type": "Identifier",
-      "id": 3038,
-      "value": "insert_node"
+      "id": 3044,
+      "value": "nodePtr->dblock"
     },
     "Token_250": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_251": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_252": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_253": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_254": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_255": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_256": {
+      "type": "Identifier",
+      "id": 3045,
+      "value": "destroy"
+    },
+    "Token_257": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_258": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_259": {
+      "type": "Identifier",
+      "id": 3045,
+      "value": "destroy"
+    },
+    "Token_260": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_261": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_262": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_263": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
+    },
+    "Token_264": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_265": {
+      "type": "Identifier",
+      "id": 3025,
+      "value": "clist"
+    },
+    "Token_266": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_267": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_268": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_269": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_270": {
+      "type": "Identifier",
+      "id": 3046,
+      "value": "make_dblock(\"David"
+    },
+    "Token_271": {
+      "type": "Identifier",
+      "id": 3047,
+      "value": "Winemaker\","
+    },
+    "Token_272": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "48,"
+    },
+    "Token_273": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "1854)"
+    },
+    "Token_274": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_275": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_276": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_277": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_278": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_279": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_280": {
+      "type": "Identifier",
+      "id": 3034,
+      "value": "create"
+    },
+    "Token_281": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_282": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_283": {
+      "type": "Identifier",
+      "id": 3035,
+      "value": "NodeType"
+    },
+    "Token_284": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_285": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_286": {
+      "type": "Identifier",
+      "id": 3040,
+      "value": "nodePtr->datablock"
+    },
+    "Token_287": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_288": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_289": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_290": {
+      "type": "Keyword",
+      "id": 9,
+      "value": "display"
+    },
+    "Token_291": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Inserting node to pos 2: \""
+    },
+    "Token_292": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_293": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_294": {
+      "type": "Identifier",
+      "id": 3048,
+      "value": "insert_node"
+    },
+    "Token_295": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_296": {
+      "type": "Identifier",
+      "id": 3031,
+      "value": "clist,"
+    },
+    "Token_297": {
+      "type": "Identifier",
+      "id": 3049,
+      "value": "nodePtr,"
+    },
+    "Token_298": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "2"
+    },
+    "Token_299": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_300": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_301": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
+    },
+    "Token_302": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_303": {
+      "type": "Identifier",
+      "id": 3025,
+      "value": "clist"
+    },
+    "Token_304": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_305": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_306": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_307": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_308": {
+      "type": "Identifier",
+      "id": 3050,
+      "value": "make_dblock(\"Mary"
+    },
+    "Token_309": {
+      "type": "Identifier",
+      "id": 3051,
+      "value": "Washington\","
+    },
+    "Token_310": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "54,"
+    },
+    "Token_311": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "1457)"
+    },
+    "Token_312": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_313": {
+      "type": "Keyword",
+      "id": 9,
+      "value": "display"
+    },
+    "Token_314": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Inserting 3: \""
+    },
+    "Token_315": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_316": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_317": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_318": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_319": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_320": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_321": {
+      "type": "Identifier",
+      "id": 3034,
+      "value": "create"
+    },
+    "Token_322": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_323": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_324": {
+      "type": "Identifier",
+      "id": 3035,
+      "value": "NodeType"
+    },
+    "Token_325": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_326": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_327": {
+      "type": "Identifier",
+      "id": 3040,
+      "value": "nodePtr->datablock"
+    },
+    "Token_328": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_329": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_330": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_331": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_332": {
+      "type": "Identifier",
+      "id": 3048,
+      "value": "insert_node"
+    },
+    "Token_333": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_334": {
+      "type": "Identifier",
+      "id": 3031,
+      "value": "clist,"
+    },
+    "Token_335": {
+      "type": "Identifier",
+      "id": 3052,
+      "value": "dblock,"
+    },
+    "Token_336": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "3"
+    },
+    "Token_337": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_338": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_339": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
+    },
+    "Token_340": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_341": {
+      "type": "Identifier",
+      "id": 3025,
+      "value": "clist"
+    },
+    "Token_342": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_343": {
+      "type": "Keyword",
+      "id": 9,
+      "value": "display"
+    },
+    "Token_344": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Inserting front: \""
+    },
+    "Token_345": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_346": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_347": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_348": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_349": {
+      "type": "Identifier",
+      "id": 3053,
+      "value": "make_dblock(\"Ann"
+    },
+    "Token_350": {
+      "type": "Identifier",
+      "id": 3054,
+      "value": "Smith\","
+    },
+    "Token_351": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "44,"
+    },
+    "Token_352": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "1568)"
+    },
+    "Token_353": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_354": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_355": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_356": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_357": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_358": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_359": {
+      "type": "Identifier",
+      "id": 3034,
+      "value": "create"
+    },
+    "Token_360": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_361": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_362": {
+      "type": "Identifier",
+      "id": 3035,
+      "value": "NodeType"
+    },
+    "Token_363": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_364": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_365": {
+      "type": "Identifier",
+      "id": 3040,
+      "value": "nodePtr->datablock"
+    },
+    "Token_366": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_367": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_368": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_369": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_370": {
+      "type": "Identifier",
+      "id": 3037,
+      "value": "insert_front"
+    },
+    "Token_371": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_372": {
+      "type": "Identifier",
+      "id": 3031,
+      "value": "clist,"
+    },
+    "Token_373": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_374": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_375": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_376": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
+    },
+    "Token_377": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_378": {
+      "type": "Identifier",
+      "id": 3025,
+      "value": "clist"
+    },
+    "Token_379": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_380": {
+      "type": "Keyword",
+      "id": 9,
+      "value": "display"
+    },
+    "Token_381": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Remove node 2 \""
+    },
+    "Token_382": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_383": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_384": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_385": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_386": {
+      "type": "Identifier",
+      "id": 3055,
+      "value": "remove_node(clist,"
+    },
+    "Token_387": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "2)"
+    },
+    "Token_388": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_389": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_390": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_391": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_392": {
+      "type": "Identifier",
+      "id": 3040,
+      "value": "nodePtr->datablock"
+    },
+    "Token_393": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_394": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_395": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_396": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_397": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_398": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_399": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_400": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
+    },
+    "Token_401": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_402": {
+      "type": "Identifier",
+      "id": 3025,
+      "value": "clist"
+    },
+    "Token_403": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_404": {
+      "type": "Identifier",
+      "id": 3045,
+      "value": "destroy"
+    },
+    "Token_405": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_406": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_407": {
+      "type": "Identifier",
+      "id": 3045,
+      "value": "destroy"
+    },
+    "Token_408": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_409": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_410": {
+      "type": "Keyword",
+      "id": 9,
+      "value": "display"
+    },
+    "Token_411": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Removing last node\""
+    },
+    "Token_412": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_413": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_414": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_415": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_416": {
+      "type": "Identifier",
+      "id": 3056,
+      "value": "remove_last(clist)"
+    },
+    "Token_417": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_418": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_419": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_420": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_421": {
+      "type": "Identifier",
+      "id": 3040,
+      "value": "nodePtr->datablock"
+    },
+    "Token_422": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_423": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_424": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_425": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_426": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_427": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_428": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_429": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
+    },
+    "Token_430": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_431": {
+      "type": "Identifier",
+      "id": 3025,
+      "value": "clist"
+    },
+    "Token_432": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_433": {
+      "type": "Identifier",
+      "id": 3045,
+      "value": "destroy"
+    },
+    "Token_434": {
+      "type": "Identifier",
+      "id": 3027,
+      "value": "nodePtr"
+    },
+    "Token_435": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_436": {
+      "type": "Identifier",
+      "id": 3045,
+      "value": "destroy"
+    },
+    "Token_437": {
+      "type": "Identifier",
+      "id": 3026,
+      "value": "dblock"
+    },
+    "Token_438": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_439": {
       "type": "Keyword",
       "id": 35,
       "value": "return"
     },
-    "Token_251": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
+    "Token_440": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "0"
     },
-    "Token_252": {
-      "type": "Identifier",
-      "id": 3005,
-      "value": "void"
-    },
-    "Token_253": {
-      "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
-    },
-    "Token_254": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
-    },
-    "Token_255": {
-      "type": "Keyword",
-      "id": 34,
-      "value": "pointer"
-    },
-    "Token_256": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
-    },
-    "Token_257": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
-    "Token_258": {
-      "type": "Identifier",
-      "id": 3020,
-      "value": "listT,"
-    },
-    "Token_259": {
+    "Token_441": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_260": {
-      "type": "Identifier",
-      "id": 3024,
-      "value": "pnode"
-    },
-    "Token_261": {
+    "Token_442": {
       "type": "Keyword",
-      "id": 32,
-      "value": "of"
+      "id": 14,
+      "value": "endfun"
     },
-    "Token_262": {
+    "Token_443": {
       "type": "Keyword",
-      "id": 42,
-      "value": "type"
+      "id": 29,
+      "value": "main"
     },
-    "Token_263": {
-      "type": "Identifier",
-      "id": 3039,
-      "value": "NodePtr,"
-    },
-    "Token_264": {
-      "type": "Identifier",
-      "id": 3040,
-      "value": "lposition"
-    },
-    "Token_265": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
-    },
-    "Token_266": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
-    "Token_267": {
-      "type": "Keyword",
-      "id": 25,
-      "value": "integer"
-    },
-    "Token_268": {
+    "Token_444": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_269": {
+    "Token_445": {
       "type": "Keyword",
       "id": 20,
       "value": "function"
     },
-    "Token_270": {
+    "Token_446": {
       "type": "Identifier",
-      "id": 3041,
-      "value": "get_node"
+      "id": 3010,
+      "value": "make_dblock"
     },
-    "Token_271": {
+    "Token_447": {
       "type": "Keyword",
       "id": 35,
       "value": "return"
     },
-    "Token_272": {
-      "type": "Keyword",
-      "id": 42,
-      "value": "type"
-    },
-    "Token_273": {
-      "type": "Identifier",
-      "id": 3027,
-      "value": "NodePtr"
-    },
-    "Token_274": {
-      "type": "Keyword",
-      "id": 33,
-      "value": "parameters"
-    },
-    "Token_275": {
-      "type": "Identifier",
-      "id": 3019,
-      "value": "plist"
-    },
-    "Token_276": {
+    "Token_448": {
       "type": "Keyword",
       "id": 34,
       "value": "pointer"
     },
-    "Token_277": {
-      "type": "Keyword",
-      "id": 32,
-      "value": "of"
-    },
-    "Token_278": {
+    "Token_449": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_279": {
+    "Token_450": {
       "type": "Identifier",
-      "id": 3020,
-      "value": "listT,"
+      "id": 3009,
+      "value": "DataT"
     },
-    "Token_280": {
+    "Token_451": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"
     },
-    "Token_281": {
-      "type": "Identifier",
-      "id": 3033,
-      "value": "lpos"
+    "Token_452": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
     },
-    "Token_282": {
+    "Token_453": {
+      "type": "Identifier",
+      "id": 3057,
+      "value": "pname"
+    },
+    "Token_454": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_455": {
       "type": "Keyword",
       "id": 32,
       "value": "of"
     },
-    "Token_283": {
+    "Token_456": {
       "type": "Keyword",
       "id": 42,
       "value": "type"
     },
-    "Token_284": {
+    "Token_457": {
+      "type": "Identifier",
+      "id": 3012,
+      "value": "char,"
+    },
+    "Token_458": {
+      "type": "Identifier",
+      "id": 3058,
+      "value": "page"
+    },
+    "Token_459": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_460": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_461": {
+      "type": "Identifier",
+      "id": 3014,
+      "value": "integer,"
+    },
+    "Token_462": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_463": {
+      "type": "Identifier",
+      "id": 3059,
+      "value": "pjobcode"
+    },
+    "Token_464": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_465": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_466": {
       "type": "Keyword",
       "id": 25,
       "value": "integer"
     },
-    "Token_285": {
+    "Token_467": {
+      "type": "Keyword",
+      "id": 26,
+      "value": "is"
+    },
+    "Token_468": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_469": {
+      "type": "Keyword",
+      "id": 44,
+      "value": "variables"
+    },
+    "Token_470": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_471": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_472": {
+      "type": "Identifier",
+      "id": 3060,
+      "value": "dbsize"
+    },
+    "Token_473": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_474": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_475": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_476": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_477": {
+      "type": "Keyword",
+      "id": 39,
+      "value": "structures"
+    },
+    "Token_478": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_479": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_480": {
+      "type": "Identifier",
+      "id": 3061,
+      "value": "ldatab"
+    },
+    "Token_481": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_482": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_483": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_484": {
+      "type": "Identifier",
+      "id": 3009,
+      "value": "DataT"
+    },
+    "Token_485": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_486": {
+      "type": "Keyword",
+      "id": 2,
+      "value": "begin"
+    },
+    "Token_487": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_488": {
+      "type": "Identifier",
+      "id": 3034,
+      "value": "create"
+    },
+    "Token_489": {
+      "type": "Identifier",
+      "id": 3061,
+      "value": "ldatab"
+    },
+    "Token_490": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_491": {
+      "type": "Identifier",
+      "id": 3009,
+      "value": "DataT"
+    },
+    "Token_492": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_493": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_494": {
+      "type": "Identifier",
+      "id": 3062,
+      "value": "strcpy"
+    },
+    "Token_495": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_496": {
+      "type": "Identifier",
+      "id": 3063,
+      "value": "ldatab->name,"
+    },
+    "Token_497": {
+      "type": "Identifier",
+      "id": 3057,
+      "value": "pname"
+    },
+    "Token_498": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_499": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_500": {
+      "type": "Identifier",
+      "id": 3064,
+      "value": "ldatab->age"
+    },
+    "Token_501": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_502": {
+      "type": "Identifier",
+      "id": 3058,
+      "value": "page"
+    },
+    "Token_503": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_504": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_505": {
+      "type": "Identifier",
+      "id": 3065,
+      "value": "ldatab->jobcode"
+    },
+    "Token_506": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_507": {
+      "type": "Identifier",
+      "id": 3059,
+      "value": "pjobcode"
+    },
+    "Token_508": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_509": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_510": {
+      "type": "Identifier",
+      "id": 3061,
+      "value": "ldatab"
+    },
+    "Token_511": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_512": {
+      "type": "Keyword",
+      "id": 14,
+      "value": "endfun"
+    },
+    "Token_513": {
+      "type": "Identifier",
+      "id": 3010,
+      "value": "make_dblock"
+    },
+    "Token_514": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_515": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_516": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_517": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_518": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_519": {
+      "type": "Identifier",
+      "id": 3017,
+      "value": "void"
+    },
+    "Token_520": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_521": {
+      "type": "Identifier",
+      "id": 3066,
+      "value": "pblock"
+    },
+    "Token_522": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_523": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_524": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_525": {
+      "type": "Identifier",
+      "id": 3009,
+      "value": "DataT"
+    },
+    "Token_526": {
+      "type": "Keyword",
+      "id": 26,
+      "value": "is"
+    },
+    "Token_527": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_528": {
+      "type": "Keyword",
+      "id": 44,
+      "value": "variables"
+    },
+    "Token_529": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_530": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_531": {
+      "type": "Identifier",
+      "id": 3067,
+      "value": "lname"
+    },
+    "Token_532": {
+      "type": "Identifier",
+      "id": 3068,
+      "value": "array[30]"
+    },
+    "Token_533": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_534": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_535": {
+      "type": "Keyword",
+      "id": 4,
+      "value": "char"
+    },
+    "Token_536": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_537": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_538": {
+      "type": "Identifier",
+      "id": 3069,
+      "value": "ljobc"
+    },
+    "Token_539": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_540": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_541": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_542": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_543": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_544": {
+      "type": "Identifier",
+      "id": 3070,
+      "value": "lage"
+    },
+    "Token_545": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_546": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_547": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_548": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_549": {
+      "type": "Keyword",
+      "id": 2,
+      "value": "begin"
+    },
+    "Token_550": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_551": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_552": {
+      "type": "Identifier",
+      "id": 3062,
+      "value": "strcpy"
+    },
+    "Token_553": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_554": {
+      "type": "Identifier",
+      "id": 3071,
+      "value": "lname,"
+    },
+    "Token_555": {
+      "type": "Identifier",
+      "id": 3072,
+      "value": "pblock->name"
+    },
+    "Token_556": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_557": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_558": {
+      "type": "Identifier",
+      "id": 3069,
+      "value": "ljobc"
+    },
+    "Token_559": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_560": {
+      "type": "Identifier",
+      "id": 3073,
+      "value": "pblock->jobcode"
+    },
+    "Token_561": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_562": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_563": {
+      "type": "Identifier",
+      "id": 3070,
+      "value": "lage"
+    },
+    "Token_564": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_565": {
+      "type": "Identifier",
+      "id": 3074,
+      "value": "pblock->age"
+    },
+    "Token_566": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_567": {
+      "type": "Keyword",
+      "id": 9,
+      "value": "display"
+    },
+    "Token_568": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Data name: \""
+    },
+    "Token_569": {
+      "type": "SpeacialSymbol",
+      "id": 801,
+      "value": ","
+    },
+    "Token_570": {
+      "type": "Identifier",
+      "id": 3067,
+      "value": "lname"
+    },
+    "Token_571": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_572": {
+      "type": "Keyword",
+      "id": 9,
+      "value": "display"
+    },
+    "Token_573": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Data age: \""
+    },
+    "Token_574": {
+      "type": "SpeacialSymbol",
+      "id": 801,
+      "value": ","
+    },
+    "Token_575": {
+      "type": "Identifier",
+      "id": 3070,
+      "value": "lage"
+    },
+    "Token_576": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_577": {
+      "type": "Keyword",
+      "id": 9,
+      "value": "display"
+    },
+    "Token_578": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Data job code: \""
+    },
+    "Token_579": {
+      "type": "SpeacialSymbol",
+      "id": 801,
+      "value": ","
+    },
+    "Token_580": {
+      "type": "Identifier",
+      "id": 3069,
+      "value": "ljobc"
+    },
+    "Token_581": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_582": {
+      "type": "Keyword",
+      "id": 14,
+      "value": "endfun"
+    },
+    "Token_583": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_584": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_585": {
+      "type": "Keyword",
+      "id": 20,
+      "value": "function"
+    },
+    "Token_586": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
+    },
+    "Token_587": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_588": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_589": {
+      "type": "Identifier",
+      "id": 3075,
+      "value": "typee"
+    },
+    "Token_590": {
+      "type": "Keyword",
+      "id": 33,
+      "value": "parameters"
+    },
+    "Token_591": {
+      "type": "Identifier",
+      "id": 3020,
+      "value": "plist"
+    },
+    "Token_592": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_593": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_594": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_595": {
+      "type": "Identifier",
+      "id": 3021,
+      "value": "listT"
+    },
+    "Token_596": {
+      "type": "Keyword",
+      "id": 26,
+      "value": "is"
+    },
+    "Token_597": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_598": {
+      "type": "Keyword",
+      "id": 44,
+      "value": "variables"
+    },
+    "Token_599": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_600": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_601": {
+      "type": "Identifier",
+      "id": 3076,
+      "value": "i"
+    },
+    "Token_602": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_603": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_604": {
+      "type": "Keyword",
+      "id": 25,
+      "value": "integer"
+    },
+    "Token_605": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_606": {
+      "type": "Keyword",
+      "id": 39,
+      "value": "structures"
+    },
+    "Token_607": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_608": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_609": {
+      "type": "Identifier",
+      "id": 3077,
+      "value": "lblock"
+    },
+    "Token_610": {
+      "type": "Keyword",
+      "id": 34,
+      "value": "pointer"
+    },
+    "Token_611": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_612": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_613": {
+      "type": "Identifier",
+      "id": 3009,
+      "value": "DataT"
+    },
+    "Token_614": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_615": {
+      "type": "Keyword",
+      "id": 8,
+      "value": "define"
+    },
+    "Token_616": {
+      "type": "Identifier",
+      "id": 3078,
+      "value": "cnodePtr"
+    },
+    "Token_617": {
+      "type": "Keyword",
+      "id": 32,
+      "value": "of"
+    },
+    "Token_618": {
+      "type": "Keyword",
+      "id": 42,
+      "value": "type"
+    },
+    "Token_619": {
+      "type": "Identifier",
+      "id": 3028,
+      "value": "nodePtrT"
+    },
+    "Token_620": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_621": {
+      "type": "Keyword",
+      "id": 2,
+      "value": "begin"
+    },
+    "Token_622": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_623": {
+      "type": "Keyword",
+      "id": 9,
+      "value": "display"
+    },
+    "Token_624": {
+      "type": "StringLiteral",
+      "id": 5000,
+      "value": "\"Traverse and display data in list\""
+    },
+    "Token_625": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_626": {
+      "type": "Identifier",
+      "id": 3079,
+      "value": "if"
+    },
+    "Token_627": {
+      "type": "Identifier",
+      "id": 3080,
+      "value": "plist->numnodes"
+    },
+    "Token_628": {
+      "type": "Unknown",
+      "id": 1200,
+      "value": "<="
+    },
+    "Token_629": {
+      "type": "NumericaLiteral",
+      "id": 4000,
+      "value": "0"
+    },
+    "Token_630": {
+      "type": "Identifier",
+      "id": 3081,
+      "value": "then"
+    },
+    "Token_631": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_632": {
+      "type": "Keyword",
+      "id": 35,
+      "value": "return"
+    },
+    "Token_633": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_634": {
+      "type": "Identifier",
+      "id": 3082,
+      "value": "endif"
+    },
+    "Token_635": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_636": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_637": {
+      "type": "Identifier",
+      "id": 3078,
+      "value": "cnodePtr"
+    },
+    "Token_638": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_639": {
+      "type": "Identifier",
+      "id": 3083,
+      "value": "get_front(plist)"
+    },
+    "Token_640": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_641": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_642": {
+      "type": "Identifier",
+      "id": 3077,
+      "value": "lblock"
+    },
+    "Token_643": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_644": {
+      "type": "Identifier",
+      "id": 3084,
+      "value": "cnodePtr->datablock"
+    },
+    "Token_645": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_646": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_647": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_648": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_649": {
+      "type": "Identifier",
+      "id": 3077,
+      "value": "lblock"
+    },
+    "Token_650": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_651": {
+      "type": "Keyword",
+      "id": 18,
+      "value": "for"
+    },
+    "Token_652": {
+      "type": "Identifier",
+      "id": 3085,
+      "value": "i=2"
+    },
+    "Token_653": {
+      "type": "Keyword",
+      "id": 41,
+      "value": "to"
+    },
+    "Token_654": {
+      "type": "Identifier",
+      "id": 3080,
+      "value": "plist->numnodes"
+    },
+    "Token_655": {
+      "type": "Keyword",
+      "id": 28,
+      "value": "loop"
+    },
+    "Token_656": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_657": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_658": {
+      "type": "Identifier",
+      "id": 3078,
+      "value": "cnodePtr"
+    },
+    "Token_659": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_660": {
+      "type": "Identifier",
+      "id": 3086,
+      "value": "get_next(plist)"
+    },
+    "Token_661": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_662": {
+      "type": "Keyword",
+      "id": 37,
+      "value": "set"
+    },
+    "Token_663": {
+      "type": "Identifier",
+      "id": 3077,
+      "value": "lblock"
+    },
+    "Token_664": {
+      "type": "Operator",
+      "id": 408,
+      "value": "="
+    },
+    "Token_665": {
+      "type": "Identifier",
+      "id": 3087,
+      "value": "cnoPtr->datablock"
+    },
+    "Token_666": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_667": {
+      "type": "Keyword",
+      "id": 3,
+      "value": "call"
+    },
+    "Token_668": {
+      "type": "Identifier",
+      "id": 3016,
+      "value": "display_data"
+    },
+    "Token_669": {
+      "type": "Keyword",
+      "id": 43,
+      "value": "using"
+    },
+    "Token_670": {
+      "type": "Identifier",
+      "id": 3077,
+      "value": "lblock"
+    },
+    "Token_671": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_672": {
+      "type": "Keyword",
+      "id": 13,
+      "value": "endfor"
+    },
+    "Token_673": {
+      "type": "EndOfStatement",
+      "id": 1000,
+      "value": "EOS"
+    },
+    "Token_674": {
+      "type": "Keyword",
+      "id": 14,
+      "value": "endfun"
+    },
+    "Token_675": {
+      "type": "Identifier",
+      "id": 3019,
+      "value": "traverse_display"
+    },
+    "Token_676": {
       "type": "EndOfStatement",
       "id": 1000,
       "value": "EOS"

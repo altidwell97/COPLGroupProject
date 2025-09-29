@@ -38,10 +38,6 @@ def tokenizefile(filename):
             document.append(currentLine)  # Adds list to nested list
         return document
 
-# tokenizefile('SCL/welcome.scl')
-
-
-commandLine = sys.argv  # what is inputted into the CLI
 
 identifier_id = 3000
 identifier_list = {}
@@ -79,7 +75,6 @@ def token_catorizer(token):
     # If token does not fall into any of the above categories
     return Token("Unknown", 1200, token)
 
-#tokenizefile('SCL/welcome.scl')
 
 commandLine = sys.argv #What is inputted into the CLI
 
@@ -100,7 +95,7 @@ if __name__ == "__main__":
         print(f"Error: file not found: {src_path}")
         sys.exit(1)
 
-    # runs og tokenizer
+    # runs tokenizer function
     document = tokenizefile(src_path)
 
     categorized_list = []
