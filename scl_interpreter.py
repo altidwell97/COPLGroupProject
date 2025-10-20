@@ -76,13 +76,13 @@ def token_catorizer(token):
     return Token("Unknown", 1200, token)
 
 
-commandLine = sys.argv #What is inputted into the CLI
-
 #Command Line should take the form: python scl_Scanner.py SCL/[SCL File]
 #Ex: python Test/scl_scanner.py SCL/welcome.scl
 #May need to move to the correct directory with the cd command on the CLI
-if __name__ == "__main__":
+def scanner(src_path, out_path):
     in_quotes = False
+
+    """
     if len(commandLine) < 2:
         print("Usage: python scl_scanner.py <file.scl> [output.json]")
         sys.exit(1)
@@ -94,6 +94,7 @@ if __name__ == "__main__":
     if not os.path.exists(src_path):
         print(f"Error: file not found: {src_path}")
         sys.exit(1)
+    """
 
     # runs tokenizer function
     document = tokenizefile(src_path)
@@ -141,10 +142,9 @@ if __name__ == "__main__":
     # Gives the categorized token objects a dictionary with string values to allow
     # exporting it to the JSON file
     iterator = 0
-    for Token in categorized_list:
+    for token in categorized_list:
         token_str = "Token_" + str(iterator)
-
-        token_data = Token.get_data()
+        token_data = token.get_data()
         token_dictionary = {
             "type": token_data[0],
             "id": token_data[1],
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     #  write json showing both shapes
     payload = {
         "source": src_path,
-        "tokens_by_line": reorganized_document,
+        # "tokens_by_line": reorganized_document,
         "tokens_flat": final_dictionary
     }
     
