@@ -79,22 +79,8 @@ def token_catorizer(token):
 #Command Line should take the form: python scl_Scanner.py SCL/[SCL File]
 #Ex: python Test/scl_scanner.py SCL/welcome.scl
 #May need to move to the correct directory with the cd command on the CLI
-def scanner(src_path, out_path):
+def scanner(src_path):
     in_quotes = False
-
-    """
-    if len(commandLine) < 2:
-        print("Usage: python scl_scanner.py <file.scl> [output.json]")
-        sys.exit(1)
-
-    src_path = "SCL/" + commandLine[1]
-    out_path = commandLine[2] if len(
-        commandLine) >= 3 else "tokens_output.json"
-
-    if not os.path.exists(src_path):
-        print(f"Error: file not found: {src_path}")
-        sys.exit(1)
-    """
 
     # runs tokenizer function
     document = tokenizefile(src_path)
@@ -139,30 +125,22 @@ def scanner(src_path, out_path):
         print("Token created: ", new_token.get_data())
         categorized_list.append(new_token)
 
-    # Gives the categorized token objects a dictionary with string values to allow
-    # exporting it to the JSON file
+    # Gives the categorized token objects a dictionary with string values
     iterator = 0
+    token_dictionary = {}
     for token in categorized_list:
         token_str = "Token_" + str(iterator)
         token_data = token.get_data()
-        token_dictionary = {
-            "type": token_data[0],
-            "id": token_data[1],
-            "value": token_data[2]
+        token_dictionary[token_str] = {}
+        token_dictionary[token_str] = {
+            "type": str(token_data[0]),
+            "id": str(token_data[1]),
+            "value": str(token_data[2])
         }
 
-        final_dictionary[token_str] = token_dictionary
+        final_dictionary.update(token_dictionary)
         iterator += 1
 
+    # Output the dictionary
+    return final_dictionary
 
-    #  write json showing both shapes
-    payload = {
-        "source": src_path,
-        # "tokens_by_line": reorganized_document,
-        "tokens_flat": final_dictionary
-    }
-    
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2)
-
-    print(f"JSON written to: {out_path}")

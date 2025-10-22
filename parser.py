@@ -14,23 +14,19 @@ commandLine = sys.argv #What is inputted into the CLI
 
 
 if __name__ == "__main__":
-
-
-    if len(commandLine) < 2:
-        print("Usage: python scl_scanner.py <file.scl> [output.json]")
+    if len(commandLine) < 1:
+        print("Usage: python parser.py <file.scl>")
         sys.exit(1)
 
     src_path = "SCL/" + commandLine[1]
-    out_path = commandLine[2] if len(
-        commandLine) >= 3 else "tokens_output.json"
 
     if not os.path.exists(src_path):
         print(f"Error: file not found: {src_path}")
         sys.exit(1)
 
-    scanner(str(src_path), str(out_path))
+    tokens = scanner(str(src_path))
 
-    with open('tokens_output.json', 'r') as file:
-        data = json.load(file)
-
-    print(data)
+    for key, value in tokens.items():
+        print(f"Key: {key}, Value {value}")
+        print(value['value'])
+        
