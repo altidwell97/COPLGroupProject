@@ -1,0 +1,16 @@
+import "scl.h"
+implementations
+function main return type integer is
+variables
+    define x of type integer
+    define y of type integer
+    define z of type integer
+begin
+    set x = 5
+    display "The value of x is: ", x
+    set y = 2
+    display "The value of y is: ", y
+    set z =  x + y
+    display "The value of z (x + y) is: ", z
+    exit
+endfun main
