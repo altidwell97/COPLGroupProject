@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     tokens = scanner(str(src_path))
 
-    for key, value in tokens.items():
-        print(f"Key: {key}, Value {value}")
-        print(value['value'])
+    # for key, value in tokens.items():
+        # print(f"Key: {key}, Value {value}")
+        # print(value['value'])
         
