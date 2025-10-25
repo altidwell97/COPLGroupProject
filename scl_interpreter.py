@@ -47,33 +47,33 @@ def token_catorizer(token):
     global identifier_id
     # Checks for string contained within double quotes
     if str(token).startswith("\"") and str(token).endswith("\""):
-        return Token("StringLiteral", 5000, token)
+        return Token("STRING", token)
     # Searches Token.py for if the token matches a keyword
     elif token in token_list["keywords"]:
-        return Token("Keyword", token_list["keywords"][token], token)
+        return Token(token_list["keywords"][token], token)
     # Searches Token.py for if the token matches an operator
     elif token in token_list["operators"]:
-        return Token("Operator", token_list["operators"][token], token)
+        return Token(token_list["operators"][token], token)
     # Searches Token.py for if the token matches a special symbol
     elif token in token_list["special symbols"]:
-        return Token("SpeacialSymbol", token_list["special symbols"][token], token)
+        return Token(token_list["special symbols"][token], token)
     # If token is not contained in Token.py and contains alphabetical characters
     # that are not within double quotes it becomes an identifier. Keeps track of 
     # previous identifiers so that multiple instances of one identifier are treated
     # as the same identifier
     elif re.match(r"[a-zA-Z_]", str(token)):
         if token in identifier_list:
-            return Token("Identifier", identifier_list[token], token)
+            return Token("IDENTIFIER", token)
         identifier_id += 1
-        identifier = Token("Identifier", identifier_id, token)
+        identifier = Token("IDENTIFIER", token)
         identifier_list[token] = identifier_id
         return identifier
     # If token is not contained in Token.py and contains numeric characters
     # that are not within double quotes it becomes a numeric literal.
     elif re.match(r"[0-9]", str(token)):
-        return Token("NumericaLiteral", 4000, token)
+        return Token("NUM", token)
     # If token does not fall into any of the above categories
-    return Token("Unknown", 1200, token)
+    return Token("Unknown", token)
 
 
 #Command Line should take the form: python scl_Scanner.py SCL/[SCL File]
@@ -121,7 +121,7 @@ def scanner(src_path):
             new_token = token_catorizer(item)
             categorized_list.append(new_token)
             print("Token created: ", new_token.get_data())
-        new_token = Token('EndOfStatement', 1000, 'EOS')
+        new_token = Token('EOS', 'EOS')
         print("Token created: ", new_token.get_data())
         categorized_list.append(new_token)
 
@@ -134,8 +134,7 @@ def scanner(src_path):
         token_dictionary[token_str] = {}
         token_dictionary[token_str] = {
             "type": str(token_data[0]),
-            "id": str(token_data[1]),
-            "value": str(token_data[2])
+            "value": str(token_data[1])
         }
 
         final_dictionary.update(token_dictionary)

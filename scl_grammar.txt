@@ -141,7 +141,7 @@ sel_dmode :
 sel_file :
          | MFILE
          ;
-data_declaration : IDENTIFIER opt_pointer parray_dec OF data_type 
+data_declaration : IDENTIFIER opt_pointer parray_dec OF TYPE data_type 
                  ;
 opt_pointer :
             | POINTER
