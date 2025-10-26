@@ -14,7 +14,36 @@ def get_next_token(token, tokens):
     else:
         return None
 
+current = 0
+def start(tokens, trees):
+    token_keys = list(tokens.keys())
+    imports = "imports"
+    symbols = "symbols"
+    forward_refs = "forward_refs"
+    specifications = "specifications"
+    globals = "globals"
+    implementations = "implementations"
+    more_tokens = True
+    while(more_tokens):
+        if(tokens[token_keys[current]]['type'] == 'IMPORT'):
+            imports(tokens[token_keys[current]], tokens, node)
+        elif(tokens[token_keys[current]]['type'] == 'SPECIFICATIONS'):
+            specifications(tokens[token_keys[current]], tokens, node)
+        elif(tokens[token_keys[current]]['type'] == 'IMPLEMENTATIONS'):
+            implementations(tokens[token_keys[current]], tokens, node)
+        else
 
+
+def imports(token, tokens, node):
+    next_token = get_next_token(token,tokens)
+    if(token['type'] == 'IMPORT' and tokens[next_token]['type'] == 'STRING'):
+
+    else:
+        print("SYNTAX ERROR!")
+
+def specifications(token,tokens, node):
+    next_token = get_next_token(token,tokens)
+        
 
 commandLine = sys.argv #What is inputted into the CLI
 
