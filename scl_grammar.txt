@@ -366,7 +366,7 @@ popt_ref :
 		 ;
 popt_dot : 
          | proc_dot
-		 ;
+	 ;
 proc_dot : DOT IDENTIFIER opt_ref
          | proc_dot DOT IDENTIFIER opt_ref
          ;

@@ -16,7 +16,7 @@ token_list = {
         'endfor': 'ENDFOR',
         'endfun': 'ENDFUN',
         'endwhile': 'ENDWHILE',
-        'exit': 'MEXIT',
+        'exit': 'EXIT',
         'float': 'FLOAT',
         'for': 'FOR',
         'forward': 'FORWARD',
