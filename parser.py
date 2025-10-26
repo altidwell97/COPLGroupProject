@@ -10,36 +10,59 @@ def get_next_token(token, tokens):
     token_keys = list(tokens.keys())
     index_of_token = token_keys.index(token)
     if(index_of_token + 1 < len(token_keys)):
+        # CONSIDER TRYING
+        # MAY NOT WORK SINCE NEED TO KEEP TRACK FO CURRENT TOKEN
+        # CAN TRY BY HAVING CURRENT KEEP TRACK OF INDEX AGAIN
+        # next_token = token_keys[index_of_token + 1]
+        # return tokens[next_token]
         return token_keys[index_of_token + 1]
     else:
         return None
-
-current = 0
+current = ''
+error = False
 def start(tokens, trees):
     token_keys = list(tokens.keys())
-    imports = "imports"
-    symbols = "symbols"
-    forward_refs = "forward_refs"
-    specifications = "specifications"
-    globals = "globals"
-    implementations = "implementations"
     more_tokens = True
+    current_token = token_keys[current]
+    current = token_keys[0]
     while(more_tokens):
-        if(tokens[token_keys[current]]['type'] == 'IMPORT'):
-            imports(tokens[token_keys[current]], tokens, node)
-        elif(tokens[token_keys[current]]['type'] == 'SPECIFICATIONS'):
-            specifications(tokens[token_keys[current]], tokens, node)
-        elif(tokens[token_keys[current]]['type'] == 'IMPLEMENTATIONS'):
-            implementations(tokens[token_keys[current]], tokens, node)
+        # if(tokens[token_keys[current]]['type'] == 'IMPORT'):
+        if(tokens[current]['type'] == 'IMPORT'):
+            imports_tree_nodes = imports(tokens[token_keys[current]], tokens)
+            if(imports_tree_nodes == None):
+                break
+        # elif(tokens[token_keys[current]]['type'] == 'SPECIFICATIONS'):
+        if(tokens[current]['type'] == 'SPECIFICATIONS'):
+            specifications_tree_nodes = specifications(tokens[token_keys[current]], tokens)
+            if(specifications_tree_nodes == None):
+                break
+        # elif(tokens[token_keys[current]]['type'] == 'IMPLEMENTATIONS'):
+        if(tokens[current]['type'] == 'IMPLEMENTATIONS'):
+            implementations_tree_nodes = implementations(tokens[token_keys[current]], tokens)
+            if(implementations_tree_nodes == None):
+                break
         else
 
 
-def imports(token, tokens, node):
+def imports(token, tokens):
+    import_tree_nodes = []
     next_token = get_next_token(token,tokens)
     if(token['type'] == 'IMPORT' and tokens[next_token]['type'] == 'STRING'):
-
+        import_tree_nodes.append(tokens[token]['value'])
+        import_tree_nodes.append(tokens[next_token]['value'])
+        token_after_next = get_next_token(next_token,tokens)
+        if(tokens[token_after_next]['type'] == "EOS"):
+            next_token = get_next_token(token_after_next, tokens)
+            if(tokens[next_token]['type'] == "IMPORT"):
+                import_tree_nodes.append(tokens[token_after_next]['value'])
+                import_tree_nodes.append(imports(next_token, tokens))
+            else:
+                return import_tree_nodes
     else:
         print("SYNTAX ERROR!")
+        error = True
+        return None
+
 
 def specifications(token,tokens, node):
     next_token = get_next_token(token,tokens)
