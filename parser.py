@@ -24,45 +24,38 @@ def identifier_present(identifier):
         return True
 
 current = ''
+trees = []
 def start(tokens):
     global current
+    global trees
     token_keys = list(tokens.keys())
     more_tokens = True
     current = token_keys[0]
-    trees = []
     while(more_tokens):
         if(tokens[current]['type'] == 'IMPORT'):
             trees.append(Node("IMPORTS"))
-            trees_returned = imports(current, tokens)
-            if(trees_returned == None):
-                break
-            else:
-                trees.append(trees_returned)
+            imports(current, tokens)
         else:
             print("SYNTAX ERROR 42")
             break
         if(tokens[current]['type'] == 'IMPLEMENTATIONS'):
             trees.append(Node("IMPLEMENTATIONS"))
-            trees_returned = implementations(current, tokens)
-            if(trees_returned == None):
-                break
-            else:
-                trees.append(trees_returned)
+            while(tokens[current]['type'] != 'BEGIN'):
+                implementations(current, tokens)
         else:
             print("SYNTAX ERROR 52")
             break
         if(tokens[current]['type'] == 'BEGIN'):
             trees.append(Node("BEGIN"))
-            while(current != 'Exit'):
-                trees_returned = begin(current, tokens)
-                if(trees_returned == None):
+            while(tokens[current]['type'] != 'EXIT'):
+                to_break = begin(current, tokens)
+                if(to_break == None):
                     break
-                else:
-                    trees.append(trees_returned)
             end_fun_node = Node('endfun')
             end_fun_node.right = Node('main')
             trees.append(end_fun_node)
         else:
+            print(current)
             print("SYNTAX ERROR 66")
             break
         return trees
@@ -73,20 +66,18 @@ import_trees = []
 def imports(token, tokens):
     global current
     global import_trees
+    global trees
     node = Node(tokens[token]['value'])
     next_token = get_next_token(token,tokens)
     if(tokens[token]['type'] == 'IMPORT' and tokens[next_token]['type'] == 'STRING'):
         node.right = Node(tokens[next_token]['value'])
         token_after_next = get_next_token(next_token,tokens)
         if(tokens[token_after_next]['type'] == "EOS"):
-            import_trees.append(node)
+            trees.append(node)
             next_token = get_next_token(token_after_next, tokens)
             current = next_token
             if(tokens[next_token]['type'] == "IMPORT"):
                 imports(next_token, tokens)
-                return import_trees
-            else:
-                return import_trees
     else:
         print("SYNTAX ERROR! 91")
         return None
@@ -95,8 +86,9 @@ implementation_trees = []
 def implementations(token,tokens):
     global current
     global implementation_trees
+    global trees
     next_token = get_next_token(token,tokens)
-    if(tokens[next_token]['type'] != 'EOS'):
+    if(tokens[next_token]['type'] != 'EOS' and tokens[next_token]['type'] != 'DEFINE'):
         print("SYNTAX ERROR 100")
         return None
     token_after_next = get_next_token(next_token, tokens)
@@ -107,28 +99,27 @@ def implementations(token,tokens):
             main_head.left = Node(tokens[token_after_next]['value'])
             token_after_next = get_next_token(next_token, tokens)
             if(tokens[token_after_next]['type'] == 'RETURN'):
-                next_token = get_next_token(next_token,tokens)
+                next_token = get_next_token(token_after_next,tokens)
                 if(tokens[next_token]['type'] == 'TYPE'):
                     current_node = Node(tokens[next_token]['value'])
                     current_node.left = Node(tokens[token_after_next]['value'])
                     main_head.right = current_node
-                    token_after_next = get_next_token(token_after_next,tokens)
+                    token_after_next = get_next_token(next_token,tokens)
                     if(tokens[token_after_next]['type'] == 'INTEGER'):
-                        next_token = get_next_token(next_token,tokens)
+                        next_token = get_next_token(token_after_next,tokens)
                         if(tokens[next_token]['type'] == 'IS'):
                             next_node = Node(tokens[next_token]['value'])
                             next_node.left = Node(tokens[token_after_next]['value'])
                             current_node.right = next_node
-                            token_after_next = get_next_token(token_after_next,tokens)
+                            token_after_next = get_next_token(next_token,tokens)
                             if(tokens[token_after_next]['type'] == 'EOS'):
-                                implementation_trees.append(main_head)
-                                next_token = get_next_token(next_token,tokens)
+                                trees.append(main_head)
+                                next_token = get_next_token(token_after_next,tokens)
                                 current = next_token
                                 if(tokens[next_token]['type'] == 'VARIABLES'):
                                     data_declarations(next_token, tokens)
-                                    return implementation_trees
                                 elif(tokens[next_token]['type'] == 'BEGIN'):
-                                    return implementation_trees
+                                    return
                                 else:
                                     print("SYNTAX ERROR 133")
                                     return None
@@ -159,7 +150,13 @@ data_trees = []
 def data_declarations(token, tokens):
     global current
     global data_trees
+    global trees
     next_token = get_next_token(token, tokens)
+    if(tokens[next_token]['type'] != 'EOS'):
+        print(current)
+        print("SYNTAX ERROR 164")
+        return None
+    next_token = get_next_token(next_token,tokens)
     if(tokens[next_token]['type'] == 'DEFINE'):
         token_after_next = get_next_token(next_token,tokens)
         if(tokens[token_after_next]['type'] == 'IDENTIFIER'):
@@ -179,17 +176,15 @@ def data_declarations(token, tokens):
                     if(tokens[next_token]['type'] == 'DOUBLE' or tokens[next_token]['type'] == 'INTEGER' 
                        or tokens[next_token]['type'] == 'CHAR'):
                         current_node.right = Node(tokens[next_token]['value'])
-                        data_trees.append(data_head)
+                        trees.append(data_head)
                         token_after_next = get_next_token(next_token,tokens)
                         if(tokens[token_after_next]['type'] == 'EOS'):
                             next_token = get_next_token(token_after_next, tokens)
                             if(tokens[next_token]['type'] == 'DEFINE'):
                                 current = next_token
                                 data_declarations(next_token, tokens)
-                                return(data_trees)
                             else:
                                 current = next_token
-                                return data_trees
                         else:
                             print("SYNTAX ERROR 194") 
                             return None
@@ -210,85 +205,93 @@ begin_trees = []
 def begin(token, tokens):
     global current
     global begin_trees
+    global trees
     next_token = get_next_token(token, tokens)
     if(tokens[next_token]['type'] == 'EOS'):
         token_after_next = get_next_token(next_token,tokens)
-        if(tokens[token_after_next]['type'] == 'DISPLAY'):
-            next_token = get_next_token(token_after_next, tokens)
-            if(tokens[next_token]['type'] == 'STRING'):
-                display_head = Node(tokens[next_token]['value'])
-                display_head.left = Node(tokens[token_after_next]['value'])
-                token_after_next = get_next_token(next_token,tokens)
-                if(tokens[token_after_next]['type'] == 'COMMA'):
-                    next_token = get_next_token(token_after_next, tokens)
-                    if(tokens[next_token]['type'] == 'IDENTIFIER'):
-                        current_node = Node(tokens[next_token]['value'])
-                        current_node.left = Node(tokens[token_after_next]['value'])
-                        display_head.right = current_node
-                        token_after_next = get_next_token(next_token,tokens)
-                        if(tokens[token_after_next]['type'] == 'EOS'):
-                            begin_trees.append(display_head)
-                            next_token = get_next_token(token_after_next, tokens)
-                            if(tokens[next_token]['type'] == 'SET' or 
-                               tokens[next_token]['type'] == 'DISPLAY'):
-                                current = next_token
-                                begin(next_token, tokens)
-                            elif(tokens[next_token]['type'] == 'EXIT'):
-                                begin_trees.append(Node('exit'))
-                                return begin_trees
-                        else:
-                            print("SYNTAX ERROR 240")
-                            return None
-                    else:
-                        print("SYNTAX ERROR 243")
-                        return None
-                elif(tokens[token_after_next]['type'] == 'EOS'):
-                    next_token = get_next_token(token_after_next, tokens)
-                    current = next_token
-                    begin_trees.append(display_head)
-                    if(tokens[next_token]['type'] == 'DISPLAY' or
-                       tokens[next_token]['type'] == 'SET'):
-                        begin(next_token, tokens)
-                    elif(tokens[next_token]['type'] == 'EXIT'):
-                        begin_trees.append(Node('exit'))
-                        return begin_trees
-                else:
-                    print("SYNTAX ERROR 256")
-                    return None
-            else:
-                print("SYNTAX ERROR 259")
-                return None
-        elif(tokens[token_after_next]['type'] == 'SET'):
-            next_token = get_next_token(token_after_next, tokens)
-            if(tokens[next_token]['type'] == 'IDENTIFIER'):
-                set_head = Node(tokens[next_token]['value'])
-                set_head.left = Node(tokens[token_after_next]['value'])
-                token_after_next = get_next_token(next_token,tokens)
-                if(tokens[token_after_next]['type'] == 'EQUALS'):
-                    set_head.right = Node(tokens[token_after_next]['value'])
-                    next_token = get_next_token(token_after_next, tokens)
-                    if(tokens[next_token]['type'] == 'IDENTIFIER' or 
-                       tokens[next_token]['type'] == 'NUM'):
-                        current = next_token
-                        next_expr = set_head.right
-                        next_expr.right = expressions(next_token, tokens)
-                        begin_trees.append(set_head)
-                else:
-                    print("SYNTAX ERROR 277")
-                    return None
-            else:
-                print("SYNTAX ERROR 280")
-                return None
-        elif(tokens[token_after_next]['value'] == 'EXIT'):
-            current = token_after_next
-            begin_trees.append(Node('exit'))
-            return begin_trees
-        else:
-            print("SYNTAX ERROR 287")
-            return None
-
     else:
-        print("SYNTAX ERROR 291")
+        token_after_next = token
+    if(tokens[token_after_next]['type'] == 'DISPLAY'):
+        next_token = get_next_token(token_after_next, tokens)
+        if(tokens[next_token]['type'] == 'STRING'):
+            display_head = Node(tokens[next_token]['value'])
+            display_head.left = Node(tokens[token_after_next]['value'])
+            token_after_next = get_next_token(next_token,tokens)
+            if(tokens[token_after_next]['type'] == 'COMMA'):
+                next_token = get_next_token(token_after_next, tokens)
+                if(tokens[next_token]['type'] == 'IDENTIFIER'):
+                    current_node = Node(tokens[next_token]['value'])
+                    current_node.left = Node(tokens[token_after_next]['value'])
+                    display_head.right = current_node
+                    token_after_next = get_next_token(next_token,tokens)
+                    if(tokens[token_after_next]['type'] == 'EOS'):
+                        trees.append(display_head)
+                        next_token = get_next_token(token_after_next, tokens)
+                        if(tokens[next_token]['type'] == 'SET' or 
+                           tokens[next_token]['type'] == 'DISPLAY'):
+                            current = next_token
+                            begin(next_token, tokens)
+                        elif(tokens[next_token]['type'] == 'EXIT'):
+                            trees.append(Node('exit'))
+                            return begin_trees
+                    else:
+                        print("SYNTAX ERROR 240")
+                        return None
+                else:
+                    print("SYNTAX ERROR 243")
+                    return None
+            elif(tokens[token_after_next]['type'] == 'EOS'):
+                next_token = get_next_token(token_after_next, tokens)
+                current = next_token
+                trees.append(display_head)
+                if(tokens[next_token]['type'] == 'DISPLAY' or
+                   tokens[next_token]['type'] == 'SET'):
+                    begin(next_token, tokens)
+                elif(tokens[next_token]['type'] == 'EXIT'):
+                    trees.append(Node('exit'))
+                    return begin_trees
+            else:
+                print("SYNTAX ERROR 256")
+                return None
+        else:
+            print("SYNTAX ERROR 259")
+            return None
+    elif(tokens[token_after_next]['type'] == 'SET'):
+        next_token = get_next_token(token_after_next, tokens)
+        if(tokens[next_token]['type'] == 'IDENTIFIER'):
+            set_head = Node(tokens[next_token]['value'])
+            set_head.left = Node(tokens[token_after_next]['value'])
+            token_after_next = get_next_token(next_token,tokens)
+            if(tokens[token_after_next]['type'] == 'EQUALS'):
+                next_expr = Node(tokens[token_after_next]['value'])
+                set_head.right = next_expr
+                next_token = get_next_token(token_after_next, tokens)
+                if(tokens[next_token]['type'] == 'IDENTIFIER' or 
+                   tokens[next_token]['type'] == 'NUM'):
+                    token_after_next = get_next_token(next_token,tokens)
+                    if(tokens[token_after_next]['type'] == 'EOS'):
+                        current = next_token
+                        next_expr.right = Node(tokens[next_token]['value'])
+                        trees.append(set_head)
+                    elif(tokens[token_after_next]['type'] == 'PLUS' or
+                         tokens[token_after_next]['type'] == 'MINUS' or
+                         tokens[token_after_next]['type'] == 'STAR' or
+                         tokens[token_after_next]['type'] == 'DIVOP'):
+                        current = next_token
+                        next_expr.right = expressions(next_token, tokens)
+                        trees.append(set_head)
+            else:
+                print("SYNTAX ERROR 277")
+                return None
+        else:
+            print("SYNTAX ERROR 280")
+            return None
+    elif(tokens[token_after_next]['value'] == 'EXIT'):
+        current = token_after_next
+        trees.append(Node('exit'))
+        return begin_trees
+    else:
+        print("SYNTAX ERROR 287")
         return None
 
 def expressions(token, tokens):
@@ -306,9 +309,11 @@ def expressions(token, tokens):
             if(tokens[next_token]['type'] == 'PLUS' or
                tokens[next_token]['type'] == 'MINUS'):
                 expr_head.right = expressions(token_after_next, tokens)
+                return expr_head
             elif(tokens[next_token]['type'] == 'STAR' or
                 tokens[next_token]['type'] == 'DIVOP'):
                 expr_head.right = expressions_other(token_after_next, tokens)
+                return expr_head
             elif(tokens[next_token]['type'] == 'EOS'):
                 token_after_next = get_next_token(next_token, tokens)
                 current = token_after_next
@@ -330,6 +335,7 @@ def expressions(token, tokens):
         begin(next_token,tokens)
     else:
         print("SYNTAX ERROR 332")
+        return None
             
     
 def expressions_other(token,tokens):
@@ -348,9 +354,11 @@ def expressions_other(token,tokens):
             if(tokens[next_token]['type'] == 'STAR' or
                tokens[next_token]['type'] == 'DIVOP'):
                 expr_head.right = expressions_other(token_after_next, tokens)
+                return expr_head
             elif(tokens[next_token]['type'] == 'PLUS' or
                 tokens[next_token]['type'] == 'MINUS'):
                 expr_head.right = expressions(token_after_next, tokens)
+                return expr_head
             elif(tokens[next_token]['type'] == 'EOS'):
                 token_after_next = get_next_token(next_token, tokens)
                 current = token_after_next
@@ -382,12 +390,15 @@ if __name__ == "__main__":
 
     tokens = scanner(str(src_path))
 
+    for key, value in tokens.items():
+        print(f"key: {key}, Value: {value}")
+
     forest = []
-    forest.append(start(tokens))
+    forest = start(tokens)
 
     for tree in forest:
         #in_order = 
-        inorder(tree)
+        print(inorder(tree))
         #print(in_order)
 
 

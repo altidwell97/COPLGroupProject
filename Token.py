@@ -2,7 +2,7 @@
 token_list = {
     "keywords":{
         'array': 'ARRAY',
-        'begin': 'PBEGIN',
+        'begin': 'BEGIN',
         'call': 'CALL',
         'char': 'CHAR',
         'ChNode': 5,

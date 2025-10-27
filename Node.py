@@ -8,13 +8,17 @@ class Node:
 
 
 #Inorder traversal from the parent node
+inorder_array = []
 def inorder(node):
+    global inorder_array
     if node == None:
         return
-    
-    inorder(node.left)
-    print(node.data)
-    inorder(node.right)
+    if(node.left != None):
+        inorder(node.left)
+    inorder_array.append(node.data)
+    if(node.right != None):
+        inorder(node.right)
+    return inorder_array
 
 #searchs for node and returns the node
 def dfs(node, searchNode):
