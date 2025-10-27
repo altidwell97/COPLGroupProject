@@ -50,8 +50,8 @@ token_list = {
     },
 
     "operators":{
-        '+': 'ADD',
-        '-': 'SUBTRACT',
+        '+': 'PLUS',
+        '-': 'MINUS',
         '*': 'STAR',
         '/': 'DIVOP',
         '^': 405,
