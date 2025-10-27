@@ -4,6 +4,15 @@ from scl_interpreter import scanner
 from Node import *
 
 
+# Group: Alex Tidwell, Jennifer Morales, Sydney Forbes
+"""
+We chose to write a parser for the subset of SCL grammar that only allows imports,
+defining of variables, the main method, basic arithmetic including addition, subtraction,
+multiplication, and division, and displaying a string or variable to the screen.
+This parser does not cover other methods, arrays, and anything not listed above.
+"""
+
+# gets the next token
 def get_next_token(token, tokens):
     token_keys = list(tokens.keys())
     index_of_token = token_keys.index(token)
@@ -14,6 +23,7 @@ def get_next_token(token, tokens):
     
 identifiers = []
 
+# Checks if an identifier has already been defined
 def identifier_present(identifier):
     global identifiers
     if(identifier not in identifiers):
@@ -24,47 +34,45 @@ def identifier_present(identifier):
 
 current = ''
 trees = []
+# Starts the parsing and returns an array of trees
 def start(tokens):
     global current
     global trees
     token_keys = list(tokens.keys())
-    more_tokens = True
     current = token_keys[0]
-    while(more_tokens):
-        if(tokens[current]['type'] == 'IMPORT'):
-            trees.append(Node("IMPORTS"))
-            __imports(current, tokens)
-        else:
-            print("SYNTAX ERROR 42")
-            break
-        if(tokens[current]['type'] == 'IMPLEMENTATIONS'):
-            trees.append(Node("IMPLEMENTATIONS"))
-            while(tokens[current]['type'] != 'BEGIN'):
-                __implementations(current, tokens)
-        else:
-            print("SYNTAX ERROR 52")
-            break
-        if(tokens[current]['type'] == 'BEGIN'):
-            trees.append(Node("BEGIN"))
-            while(tokens[current]['type'] != 'EXIT'):
-                to_break = __begin(current, tokens)
-                if(to_break == None):
-                    break
-            end_fun_node = Node('endfun')
-            end_fun_node.left = Node('exit')
-            end_fun_node.right = Node('main')
-            trees.append(end_fun_node)
-        else:
-            print("SYNTAX ERROR 66")
-            break
-        return trees
+    if(tokens[current]['type'] == 'IMPORT'):
+        trees.append(Node("IMPORTS"))
+        __imports(current, tokens)
+    else:
+        print("SYNTAX ERROR 42")
+        return None
+    if(tokens[current]['type'] == 'IMPLEMENTATIONS'):
+        trees.append(Node("IMPLEMENTATIONS"))
+        while(tokens[current]['type'] != 'BEGIN'):
+            __implementations(current, tokens)
+    else:
+        print("SYNTAX ERROR 52")
+        return None
+    if(tokens[current]['type'] == 'BEGIN'):
+        trees.append(Node("BEGIN"))
+        while(tokens[current]['type'] != 'EXIT'):
+            to_break = __begin(current, tokens)
+            if(to_break == None):
+               break
+        end_fun_node = Node('endfun')
+        end_fun_node.left = Node('exit')
+        end_fun_node.right = Node('main')
+        trees.append(end_fun_node)
+    else:
+        print("SYNTAX ERROR 66")
+        return None
+    return trees
         
             
 
-import_trees = []
+# Function that checks syntax on imports and generates AST for them
 def __imports(token, tokens):
     global current
-    global import_trees
     global trees
     node = Node(tokens[token]['value'])
     next_token = get_next_token(token,tokens)
@@ -81,7 +89,7 @@ def __imports(token, tokens):
         print("SYNTAX ERROR! 91")
         return None
 
-implementation_trees = []
+# Function that checks syntax on implementations and generates AST for them
 def __implementations(token,tokens):
     global current
     global implementation_trees
@@ -145,7 +153,7 @@ def __implementations(token,tokens):
         return None
 
 
-data_trees = []
+# Function that checks syntax on data declarations and generates AST for them
 def __data_declarations(token, tokens):
     global current
     global data_trees
@@ -199,7 +207,8 @@ def __data_declarations(token, tokens):
     else:
         print("SYNTAX ERROR 206")
         return None
-    
+
+# Function that checks syntax on things inside the main method and generates AST for them
 def __begin(token, tokens):
     global current
     global trees
@@ -290,7 +299,8 @@ def __begin(token, tokens):
     else:
         print("SYNTAX ERROR 287")
         return None
-
+    
+# Function that checks syntax on expressions with + or - and generates AST for them
 def __expressions(token, tokens):
     global current
     next_token = get_next_token(token, tokens)
@@ -334,7 +344,7 @@ def __expressions(token, tokens):
         print("SYNTAX ERROR 332")
         return None
             
-    
+# Function that checks syntax on expressions with * or / and generates AST for them    
 def __expressions_other(token,tokens):
     global current
     next_token = get_next_token(token, tokens)
@@ -373,7 +383,7 @@ def __expressions_other(token,tokens):
 
 commandLine = sys.argv #What is inputted into the CLI
 
-
+# Main method
 if __name__ == "__main__":
     if len(commandLine) < 1:
         print("Usage: python parser.py <file.scl>")
@@ -387,16 +397,11 @@ if __name__ == "__main__":
 
     tokens = scanner(str(src_path))
 
-    for key, value in tokens.items():
-        print(f"key: {key}, Value: {value}")
-
     forest = []
     forest = start(tokens)
 
     for tree in forest:
-        #in_order = 
         print(inorder(tree))
-        #print(in_order)
 
 
 

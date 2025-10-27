@@ -1,7 +1,4 @@
-import os
 from Token import *
-import sys
-import json
 import re
 
 # Group: Alex Tidwell, Jennifer Morales, Sydney Forbes
