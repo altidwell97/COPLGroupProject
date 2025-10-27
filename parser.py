@@ -4,8 +4,6 @@ from scl_interpreter import scanner
 from Node import *
 
 
-
-
 def get_next_token(token, tokens):
     token_keys = list(tokens.keys())
     index_of_token = token_keys.index(token)
@@ -17,6 +15,7 @@ def get_next_token(token, tokens):
 identifiers = []
 
 def identifier_present(identifier):
+    global identifiers
     if(identifier not in identifiers):
         identifiers.append(identifier)
         return False
@@ -52,10 +51,10 @@ def start(tokens):
                 if(to_break == None):
                     break
             end_fun_node = Node('endfun')
+            end_fun_node.left = Node('exit')
             end_fun_node.right = Node('main')
             trees.append(end_fun_node)
         else:
-            print(current)
             print("SYNTAX ERROR 66")
             break
         return trees
@@ -153,7 +152,6 @@ def data_declarations(token, tokens):
     global trees
     next_token = get_next_token(token, tokens)
     if(tokens[next_token]['type'] != 'EOS'):
-        print(current)
         print("SYNTAX ERROR 164")
         return None
     next_token = get_next_token(next_token,tokens)
@@ -172,6 +170,7 @@ def data_declarations(token, tokens):
                 if(tokens[token_after_next]['type'] == 'TYPE'):
                     current_node = Node(tokens[token_after_next]['value'])
                     current_node.left = Node(tokens[next_token]['value'])
+                    data_head.right = current_node
                     next_token = get_next_token(token_after_next, tokens)
                     if(tokens[next_token]['type'] == 'DOUBLE' or tokens[next_token]['type'] == 'INTEGER' 
                        or tokens[next_token]['type'] == 'CHAR'):
