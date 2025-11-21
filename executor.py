@@ -9,3 +9,6 @@ def imports(tree):
     tree_nodes = inorder(tree)
     translated_line = "#include " + tree_nodes[1] + ";"
     return translated_line
+
+# We need a method for the starting keywords function, define, display
+# (one that handles with variables and one for without, or two options in the same method), and set
