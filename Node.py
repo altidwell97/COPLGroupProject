@@ -7,10 +7,10 @@ class Node:
         self.right= None
 
 
-#Inorder traversal from the parent node
-inorder_array = []
+# Inorder traversal from the parent node
+# inorder_array = []
 def inorder(node):
-    global inorder_array
+    inorder_array = []
     if node == None:
         return
     if(node.left != None):

@@ -1,0 +1,12 @@
+description -> ignore
+import "scl.h" -> #include "scl.h";
+implementations -> ignore
+function main return typ integer is -> int main() {
+variables -> ignore
+define x of type double -> double x;
+begin -> ignore
+display "Welcome to the world of SCL" -> printf("Welcome to the world of SCL");
+set x = 45.95 -> x = 45.95;
+display "Value of x: ", x -> printf("Value of x: %f", x);
+exit -> return 0;
+endfun main -> }
