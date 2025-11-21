@@ -4,10 +4,9 @@ from Node import *
 # other methods
 # def exectutor(trees):
 
-# This takes the tree for an import and translates it to it's equivalent in C
+# This takes the inorder array representation for an import and translates it to it's equivalent in C
 def imports(tree):
-    tree_nodes = inorder(tree)
-    translated_line = "#include " + tree_nodes[1] + ";"
+    translated_line = "#include " + tree[1] + ";"
     return translated_line
 
 # We need a method for the starting keywords function, define, display
