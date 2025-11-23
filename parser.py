@@ -56,9 +56,7 @@ def start(tokens):
     if(tokens[current]['type'] == 'BEGIN'):
         trees.append(Node("BEGIN"))
         while(tokens[current]['type'] != 'EXIT'):
-            to_break = __begin(current, tokens)
-            if(to_break == None):
-               break
+            __begin(current, tokens)
         end_fun_node = Node('endfun')
         end_fun_node.left = Node('exit')
         end_fun_node.right = Node('main')

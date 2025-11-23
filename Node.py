@@ -9,16 +9,18 @@ class Node:
 
 # Inorder traversal from the parent node
 # inorder_array = []
+# fixed inorder_array to return proper result. Initially it would always return only the root node.
 def inorder(node):
-    inorder_array = []
-    if node == None:
-        return
-    if(node.left != None):
-        inorder(node.left)
-    inorder_array.append(node.data)
-    if(node.right != None):
-        inorder(node.right)
-    return inorder_array
+    
+    if node is None:
+        return []
+    result = []
+    if node.left is not None:
+        result.extend(inorder(node.left))
+    result.append(node.data)
+    if node.right is not None:
+        result.extend(inorder(node.right))
+    return result
 
 #searchs for node and returns the node
 def dfs(node, searchNode):
